@@ -19,5 +19,13 @@ def read_from_csv(filename):
     return table
 
 
-#def write_to_csv():
-    #pass
+def write_to_csv(filename, new_data):
+    table = read_from_csv(filename)
+    new_id = ID_generator(table)
+    new_data.insert(0, new_data)
+    with open(filename, "a") as table:
+        for data in table:
+            f.write(data + ",")
+        f.write('\n')
+    updated_table = read_from_csv(filename)
+    return updated_table
