@@ -1,1 +1,39 @@
 <!DOCTYPE html>
+
+<html>
+
+<head>
+    <title> AskMate </title>
+</head>
+
+<body>
+    <h1> AskMate by G-nap </h1>
+    <table>
+        <style>
+            table {
+                border-collapse: collapse;
+                border: 2px black solid;
+                font: 16px sans-serif;
+            }
+            
+            td {
+                border: 1px black solid;
+                padding: 8px;
+            }
+        </style>
+
+        <thead>
+            <tr>
+                <th> Questions </th>
+            </tr>
+
+            <tbody>
+                {% for item in table %}
+                <td> {{ item [5] }} </td>
+                {% endfor %}
+            </tbody>
+        </thead>
+    </table>
+</body>
+
+</html>
