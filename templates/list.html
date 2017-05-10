@@ -18,6 +18,7 @@
                 border-collapse: collapse;
                 border: 2px black solid;
                 font: 16px sans-serif;
+                width: 800px
             }
             
             td {
@@ -29,6 +30,7 @@
         <thead>
             <tr>
                 <th> Questions </th>
+                <th> </th>
             </tr>
         </thead>
 
@@ -36,7 +38,11 @@
 
             {% for item in table %}
             <tr>
-                <td> {{ item [3] }} </td>
+                <td>{{ item [3] }} </td>
+                <td>
+                    <form action="/question/{{ item[0] }}" method="GET">
+                        <input type="submit" value="Answers">
+                    </form>
             </tr>
             {% endfor %}
 
