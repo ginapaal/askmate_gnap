@@ -6,11 +6,12 @@ import time
 app = Flask(__name__)
 
 
-@app.route('/', methods=["GET"])
-@app.route('/list', methods=["GET"])
+@app.route('/', methods=["GET", "POST"])
+@app.route('/list', methods=["GET", "POST"])
 def display_list():
     table = read_from_csv("question.csv")
-    return render_template("list.html", table=table)
+    rev_table = reversed(list(table))
+    return render_template("list.html", table=rev_table)
 
 
 @app.route("/new_question", methods=['GET', 'POST'])
