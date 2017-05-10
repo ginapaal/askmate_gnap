@@ -10,6 +10,7 @@ app = Flask(__name__)
 def display_list():
     table = read_from_csv("question.csv")
     rev_table = reversed(list(table))
+
     return render_template("list.html", table=rev_table)
 
 
