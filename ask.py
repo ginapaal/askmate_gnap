@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request
 from data_manager import *
 import csv
+import time
 
 app = Flask(__name__)
 
@@ -16,9 +17,10 @@ def display_list():
 def new_question():
     if request.method == 'POST':
         table = read_from_csv("question.csv")
+        timestamp = int(time.time())
         question_list = []
         question_list.append(ID_generator(table))
-        question_list.append(1)
+        question_list.append(timestamp)
         question_list.append(request.form['title'])
         question_list.append(request.form['new_question'])
         table.append(question_list)
