@@ -9,7 +9,8 @@ app = Flask(__name__)
 @app.route('/list', methods=["GET"])
 def display_list():
     table = read_from_csv("question.csv")
-    return render_template("list.html", table=table)
+    rev_table = reversed(list(table))
+    return render_template("list.html", table=rev_table)
 
 
 if __name__ == "__main__":
