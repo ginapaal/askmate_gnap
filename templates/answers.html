@@ -16,7 +16,12 @@
                 table { 
                         border-collapse: collapse;
                         border: 1px black;
-                        font: 12 px
+                        font: 12px sans-serif;
+                        width: 800px
+                }
+                td {
+                    border: 1px black;
+                    padding: 9px
                 }
             </style>
 
@@ -24,8 +29,9 @@
         <form action="/question/<question_id>/answer" method="POST">
             <label> AskMate Answers </label>
             <p><textarea="I can answer" rows=7 cols="70"></textarea></p>
-            <p><input type="Answer" value="send"></p>
+            <p><input type="Send Answer" value="send"></p>
         </form>
+        { % endif % }
     </body>    
 
 </html>
