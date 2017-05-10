@@ -18,9 +18,11 @@ def new_question():
         table = read_from_csv("question.csv")
         question_list = []
         question_list.append(ID_generator(table))
+        question_list.append(1)
+        question_list.append(request.form['title'])
         question_list.append(request.form['new_question'])
         table.append(question_list)
-        write_to_csv("question.csv", table)
+        write_to_csv("question.csv", question_list)
 
         return render_template("list.html", table=table)
     else:
