@@ -6,8 +6,7 @@
     </head>
 
     <body>
-
-        <form action="/question/<question_id>/new-answer" method="POST">
+        <form action="/question/{{ question_id }}/new-answer" method="POST">
             <label> AskMate Answers </label>
             <p align="middle"><textarea="I can answer mate" rows=7 cols="70"></textarea></p>
             <p><input type="submit" name= "new_answer" value="Send My Answer"></p>
