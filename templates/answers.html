@@ -4,15 +4,7 @@
 
     <head>
     <title> AskMate Answers </title>
-    </head>
-
-    <body>
-        { % if question_id % }
-        <h2 allign="middle"> AskMate Answers </h2>
-        <form action= "/question/question_id" method="GET"></form>
-        <br>
-        <table>
-            <style> 
+         <style> 
                 table { 
                         border-collapse: collapse;
                         border: 1px black;
@@ -24,14 +16,34 @@
                     padding: 9px
                 }
             </style>
+    </head>
 
-        { % else % } 
-        <form action="/question/<question_id>/answer" method="POST">
-            <label> AskMate Answers </label>
-            <p><textarea="I can answer" rows=7 cols="70"></textarea></p>
-            <p><input type="Send Answer" value="send"></p>
+    <body>
+        <h2 allign="middle"> AskMate Answers </h2>
+        <form action= "/question/<question_id>" method="GET"></form>
+        <br>
+        {% for item in table %}
+            <h3 align="middle"> {{ item[2] }}</h3>
+            <h4 align="middle"> {{ item[3] }}</h4>
+        {% endfor %}
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Answers</th>
+                </tr>
+            </thead>
+            <tbody> 
+                {% for item in table %}
+                    <tr>
+                        <td> {{ item[3] }} </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <form action= '/question/{{ question_id }}/new-answer', method="POST">
+            <input type = "submit" value="I can answer mate">
         </form>
-        { % endif % }
     </body>    
 
 </html>
