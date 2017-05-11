@@ -40,7 +40,7 @@ def read_from_csv(filename):
                     for word in row:
                         if word == row[2]:
                             byte_format = bytes(row[2], "utf-8")
-                            row[2] = base64.b64decode(byte_format).decode("utf-8")
+                            row[3] = base64.b64decode(byte_format).decode("utf-8")
                 except:
                     pass
 
@@ -59,7 +59,7 @@ def write_to_csv(filename, new_data):
                     table.write(str(word) + ",")
         else:
             for word in new_data:
-                if word == new_data[2]:
+                if word == new_data[3]:
                     utf8_encoded = word.encode('utf-8')
                     b64_encoded = base64.b64encode(utf8_encoded).decode("utf-8")
                     table.write(str(b64_encoded) + ",")
