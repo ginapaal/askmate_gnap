@@ -7,19 +7,30 @@
     </head>
 
     <body>
-        <h2 allign="middle"> AskMate Answers </h2>
+        <h2 align="middle"> AskMate Answers </h2>
         <form action= "/question/<question_id>" method="GET"></form>
         <br>
         {% for item in table %}
-            <h3 align="middle"> {{ item[2] }}</h3>
-            <h4 align="middle"> {{ item[3] }}</h4>
+            <h5> {{ item[2] }}</h3>
+            <h6> {{ item[3] }}</h4>
         {% endfor %}
 
         <table>
-            
-            <thead>
+            <style> 
+                table { 
+                        border-collapse: collapse;
+                        border: 1px black;
+                        font: 12px sans-serif;
+                        width: 800px
+                }
+                td {
+                    border: 1px black;
+                    padding: 9px
+                }
+            </style>
+            <thead align="middle">
                 <tr>
-                    <th>Answers</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody> 

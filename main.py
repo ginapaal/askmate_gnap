@@ -1,9 +1,16 @@
-from flask import Flask, render_template, request, redirect
+from flask import Flask, render_template, request, redirect, url_for
 from data_manager import *
 import csv
 import time
 
 app = Flask(__name__)
+
+
+def linefinder(table, question_id):
+    line = 0
+    while line < len(table) - 1 and table[line][0] != str(question_id):
+        line += 1
+    return table[line]
 
 
 @app.route('/', methods=["GET", "POST"])
@@ -32,28 +39,32 @@ def new_question():
     else:
         return render_template("ask_a_question.html")
 
-@app.route('/question/<question_id>', methods=['GET','POST'])
+@app.route('/question/<question_id>', methods=['GET', 'POST'])
 def display_answer_list(question_id):
-    
-    table = read_from_csv('answers.csv')
-    reverse_answers_timeline = reversed(list(table))
-    return render_template('answers.html', table=reverse_answers_timeline, question_id=question_id)
+    table = read_from_csv('question.csv')
+    answer_table = read_from_csv('answers.csv')
+    reverse_answers_timeline = reversed(list(answer_table))
+    question_line = linefinder(table, question_id)
+    question_title = question_line[2]
+    question_msg = question_line[3]
+    answer_line = linefinder(answer_table, question_id)
+    answer = answer_line[2]
+    return render_template('answers.html', answer_table=reverse_answers_timeline, answer=answer, table=table, question_id=question_id, question_title=question_title, question_msg=question_msg)
+
 
 @app.route("/question/<question_id>/new-answer", methods=["GET", "POST"])
 def new_answer(question_id):
-    
     if request.method == "POST":
-        table = read_from_csv('answers.csv')
-        answer_list = []
+        answer_table = read_from_csv('answers.csv')
         timestamp = int(time.time())
+        answer_list = []
         answer_list.append(ID_generator(table))
         answer_list.append(timestamp)
-        answer_list.append(question_id)
+        answer_list.append(request.form['question_id'])
         answer_list.append(request.form['new_answer'])
-        table.append(answer_list)
-        write_to_csv('answers.csv', table)
-        
-        return redirect('/question/<question_id>')
+        answer_table.append(answer_list)
+        write_to_csv('answers.csv', answer_table)
+        return redirect("/")
     else:
         return render_template('write_new_answer.html')
 
