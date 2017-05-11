@@ -27,7 +27,7 @@ def new_question():
         table.append(question_list)
         write_to_csv("question.csv", question_list)
 
-        return render_template("list.html", table=table)
+        return redirect("/")
     else:
         return render_template("ask_a_question.html")
 
