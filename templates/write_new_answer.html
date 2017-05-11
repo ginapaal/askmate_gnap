@@ -9,11 +9,11 @@
 <body>
     <h2 align="middle"> AskMate Answers </h2>
     <br>
-    <form action="/" method="GET">
+    <form action="/question/{{ question_id }}/new-answer" method="POST">
         <p align="middle"><label> Write your answer here </label></p>
-        <p align="middle"><textarea minlength=10 rows=7 cols="70"></textarea></p>
+        <p align="middle"><textarea name='new_answer' minlength=10 rows=7 cols="70"></textarea></p>
         <br>
-        <p align="middle"><input type="submit" name="new_answer" value="Send My Answer"></p>
+        <p align="middle"><input type="submit" value="Send My Answer"></p>
     </form>
 </body>
 

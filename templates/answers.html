@@ -7,12 +7,11 @@
 </head>
 
 <body>
-    <h2 allign="middle"> AskMate Answers </h2>
+    <h2> AskMate Answers </h2>
     <form action="/question/<question_id>" method="GET"></form>
     <br>
-    <br>
-    <h3 align="middle">{{ guestion_title }}</h3>
-    <h4 align="middle">{{ question_msg }}</h4>
+    <h3> {{ title }} </h3>
+    <h4> {{ question_msg }} </h4>
 
     <br>
 
@@ -20,8 +19,8 @@
         <style>
             table {
                 border-collapse: collapse;
-                border: 2px black solid;
-                font: 16px sans-serif;
+                border: 1px black solid;
+                font: 14px sans-serif;
             }
             
             td {
@@ -35,16 +34,17 @@
             </tr>
         </thead>
         <tbody>
+            {% if question_id %}
             <tr>
-                {% if question_id %}
                 <td> {{ answer }} </td>
-                {% endif %}
             </tr>
+            {% endif %}
         </tbody>
     </table>
     <form action='/question/{{ question_id }}/new-answer' , method="GET">
         <input type="submit" value="I can answer mate">
     </form>
+
 </body>
 
 </html>
