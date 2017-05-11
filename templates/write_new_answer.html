@@ -1,15 +1,20 @@
 <!doctype HTML>
 
 <html>
-    <head>
-        <title> My Answer </title>
-    </head>
 
-    <body>
-        <form action="/question/{{ question_id }}/new-answer" method="POST">
-            <label> AskMate Answers </label>
-            <p align="middle"><textarea="I can answer mate" rows=7 cols="70"></textarea></p>
-            <p><input type="submit" name= "new_answer" value="Send My Answer"></p>
-        </form>
-    </body>
+<head>
+    <title> My Answer </title>
+</head>
+
+<body>
+    <h2 align="middle"> AskMate Answers </h2>
+    <br>
+    <form action="/" method="GET">
+        <p align="middle"><label> Write your answer here </label></p>
+        <p align="middle"><textarea minlength=10 rows=7 cols="70"></textarea></p>
+        <br>
+        <p align="middle"><input type="submit" name="new_answer" value="Send My Answer"></p>
+    </form>
+</body>
+
 </html>

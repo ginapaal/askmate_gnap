@@ -2,45 +2,44 @@
 
 <html>
 
-    <head>
+<head>
     <title> AskMate Answers </title>
-    </head>
+</head>
 
-    <body>
-        <h2 align="middle"> AskMate Answers </h2>
-        <form action="/question/<question_id>" method="GET"></form>
-        <br>
-        <br>
-        <h5 align="middle"> {{ guestion_title }}</h5>
-        <h6 align="middle"> {{ question_msg }}</h6>
-        <br>
+<body>
+    <h2 allign="middle"> AskMate Answers </h2>
+    <form action="/question/<question_id>" method="GET"></form>
+    <br>
+    <br>
+    <h3 align="middle">{{ guestion_title }}</h3>
+    <h4 align="middle">{{ question_msg }}</h4>
 
-        <table>
-            <style> 
-                table { 
-                        border-collapse: collapse;
-                        border: 1px black;
-                        font: 12px sans-serif;
-                        width: 800px
-                }
-                td {
-                    border: 1px black;
-                    padding: 9px
-                }
-            </style>
-       <thead>
+    <br>
+
+    <table>
+        <style>
+            table {
+                border-collapse: collapse;
+                border: 2px black solid;
+                font: 16px sans-serif;
+            }
+            
+            td {
+                border: 1px black solid;
+                padding: 8px;
+            }
+        </style>
+        <thead>
             <tr>
                 <th>Answers</th>
             </tr>
         </thead>
         <tbody>
-
             <tr>
                 {% if question_id %}
                 <td> {{ answer }} </td>
                 {% endif %}
             </tr>
-
         </tbody>
     </table>
     <form action='/question/{{ question_id }}/new-answer' , method="GET">

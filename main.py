@@ -8,9 +8,13 @@ app = Flask(__name__)
 
 def linefinder(table, question_id):
     line = 0
-    while line < len(table) - 1 and table[line][0] != str(question_id):
-        line += 1
-    return table[line]
+    try:
+        while line < len(table) - 1 and table[line][0] != str(question_id):
+            line += 1
+        return table[line]
+    except:
+        return None
+    
 
 
 @app.route('/', methods=["GET", "POST"])
@@ -39,6 +43,7 @@ def new_question():
     else:
         return render_template("ask_a_question.html")
 
+
 @app.route('/question/<question_id>', methods=['GET', 'POST'])
 def display_answer_list(question_id):
     table = read_from_csv('question.csv')
@@ -49,7 +54,7 @@ def display_answer_list(question_id):
     question_msg = question_line[3]
     answer_line = linefinder(answer_table, question_id)
     answer = answer_line[2]
-    return render_template('answers.html', answer_table=reverse_answers_timeline, answer=answer, table=table, question_id=question_id, question_title=question_title, question_msg=question_msg)
+    return render_template('answers.html', answer_table=reverse_answers_timeline, line=answer_line, answer=answer, table=table, question_id=question_id, question_title=question_title, question_msg=question_msg)
 
 
 @app.route("/question/<question_id>/new-answer", methods=["GET", "POST"])
@@ -58,12 +63,12 @@ def new_answer(question_id):
         answer_table = read_from_csv('answers.csv')
         timestamp = int(time.time())
         answer_list = []
-        answer_list.append(ID_generator(table))
-        answer_list.append(timestamp)
-        answer_list.append(request.form['question_id'])
-        answer_list.append(request.form['new_answer'])
+        answer_list.append(ID_generator(answer_table)) #0
+        answer_list.append(timestamp) #1
+        answer_list.append(request.form['question_id']) #2
+        answer_list.append(request.form['new_answer']) #3
         answer_table.append(answer_list)
-        write_to_csv('answers.csv', answer_table)
+        write_to_csv('answers.csv', answer_list)
         return redirect("/")
     else:
         return render_template('write_new_answer.html')

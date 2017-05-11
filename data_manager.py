@@ -24,14 +24,17 @@ def read_from_csv(filename):
 
         for row in table:
             if filename == 'question.csv':
-                for word in row:
-                    if word == row[2]:
-                        byte_format = bytes(row[2], "utf-8")
-                        row[2] = base64.b64decode(byte_format).decode("utf-8")
-                    
-                    elif word == row[3]:
-                        byte_format = bytes(row[3], "utf-8")
-                        row[3] = base64.b64decode(byte_format).decode("utf-8")
+                try:
+                    for word in row:
+                        if word == row[2]:
+                            byte_format = bytes(row[2], "utf-8")
+                            row[2] = base64.b64decode(byte_format).decode("utf-8")
+                        
+                        elif word == row[3]:
+                            byte_format = bytes(row[3], "utf-8")
+                            row[3] = base64.b64decode(byte_format).decode("utf-8")
+                except:
+                    pass
             else:
                 try:
                     for word in row:
