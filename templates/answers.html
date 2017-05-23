@@ -10,8 +10,8 @@
     <h2> AskMate Answers </h2>
     <form action="/question/<question_id>" method="GET"></form>
     <br>
-    <h3> {{ title }} </h3>
-    <h4> {{ question_msg }} </h4>
+    <h3> {{ question_id }} </h3>
+    <h4> {{ question }} </h4>
 
     <br>
 
@@ -22,11 +22,11 @@
             </tr>
         </thead>
         <tbody>
-
+            {% for item in answer %}
             <tr>
-                <td> {{ answer }} </td>
+                <td> {{ item[4] }} </td>
             </tr>
-
+            {% endfor %}
         </tbody>
     </table>
     <form action='/question/{{ question_id }}/new-answer' , method="GET">

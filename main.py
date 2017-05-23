@@ -26,13 +26,11 @@ def new_question():
 def display_answer_list(question_id):
 
     rows_answer = query_manager.read_from_answer(query_manager.connect_to_db(), question_id)
-    print(rows_answer)
-    if rows_answer != []:
-        rows_correct = rows_answer[0][4]
-    else:
-        rows_correct = ""
+    rows_question = query_manager.read_from_question(query_manager.connect_to_db(), question_id)
+    if rows_answer == []:
+        rows_answer = ""
 
-    return render_template('answers.html', answer=rows_correct, question_id=question_id)
+    return render_template('answers.html', answer=rows_answer, question_id=question_id, question=rows_question[0][4])
 
 
 @app.route("/question/<question_id>/new-answer", methods=["GET", "POST"])
