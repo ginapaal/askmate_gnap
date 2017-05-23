@@ -9,30 +9,6 @@ def connect_to_db():
     return conn
 
 
-def update_db(query, conn):
-    cursor = conn.cursor()
-    cursor.execute(query)
-
-
-def print_result(query, conn):
-    cursor = conn.cursor()
-    cursor.execute(query)
-    rows = cursor.fetchall()
-    return print(rows)
-
-
-def make_query_readable(rows):
-    readable_data = ""
-    for item in rows:
-        for word in item:
-            readable_data += str(word)
-            if word != item[-1]:
-                readable_data += ", "
-        if item != rows[-1]:
-            readable_data += " ; "
-    return readable_data
-
-
 def insert_into_question(conn):
     cursor = conn.cursor()
     dt = datetime.now()
