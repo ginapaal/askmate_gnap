@@ -3,14 +3,17 @@
 
 <head>
     <title>AskMate - New Question</title>
+    <link rel='stylesheet' type='text/css' href='textareas.css'>
 </head>
 
 <body>
-    <h2 align="middle"> AskMate Your Question:</h2>
+    <h2> AskMate Your Question:</h2>
     <form action="/new_question" method="POST">
-        <p align="middle">Title: <input type="text" name="title"></p>
-        <p align="middle"><textarea name="new_question" rows="5" cols="55"></textarea></p>
-        <p align="middle"><input type="submit" value="Send"></p>
+    <div class='input_areas'>
+        <input label='Question Title' id='styled_title' type="text" name="title"></p>
+        <textarea label='My Question' id='styled_textarea' name="new_question"></textarea></p>
+    </div>
+        <p><input id='styled_button' type="submit" value="Send Question"></p>
     </form>
 </body>
 
