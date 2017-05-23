@@ -26,7 +26,11 @@ def new_question():
 def display_answer_list(question_id):
 
     rows_answer = query_manager.read_from_answer(query_manager.connect_to_db(), question_id)
-    rows_correct = rows_answer[0][4]
+    print(rows_answer)
+    if rows_answer != []:
+        rows_correct = rows_answer[0][4]
+    else:
+        rows_correct = ""
 
     return render_template('answers.html', answer=rows_correct, question_id=question_id)
 
