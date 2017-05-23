@@ -26,7 +26,7 @@ def display_list():
 def new_question():
 
     if request.method == 'POST':
-        query_manager.insert_into_questions(conn)
+        query_manager.insert_into_questions(query_manager.connect_to_db())
         return redirect("/")
     else:
         return render_template("ask_a_question.html")
