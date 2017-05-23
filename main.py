@@ -6,15 +6,6 @@ import time
 app = Flask(__name__)
 
 
-def linefinder(table, question_id, id_num):
-
-    line = 0
-
-    while line < len(table) - 1 and table[line][id_num] != str(question_id):
-        line += 1
-    return table[line]
-
-
 @app.route('/', methods=["GET", "POST"])
 @app.route('/list', methods=["GET", "POST"])
 def display_list():
@@ -24,7 +15,6 @@ def display_list():
 
 @app.route("/new_question", methods=['GET', 'POST'])
 def new_question():
-
     if request.method == 'POST':
         query_manager.insert_into_question(query_manager.connect_to_db())
         return redirect("/")
