@@ -5,10 +5,7 @@ import csv
 def ID_generator(table):
     new_id = [0]
     for row in table:
-        try:
-            new_id.append(int(row[0]))
-        except:
-            continue
+        new_id.append(int(row[0]))
     new_id = max(new_id) + 1
     return str(new_id)
 
