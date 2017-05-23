@@ -22,11 +22,11 @@
             </tr>
         </thead>
         <tbody>
-            {% if question_id %}
+
             <tr>
                 <td> {{ answer }} </td>
             </tr>
-            {% endif %}
+
         </tbody>
     </table>
     <form action='/question/{{ question_id }}/new-answer' , method="GET">

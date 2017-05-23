@@ -47,3 +47,11 @@ def read_from_db(conn):
     cursor.execute("""SELECT * FROM question;""", conn)
     rows = cursor.fetchall()
     return rows
+
+
+def read_from_answer(conn, question_id):
+    cursor = conn.cursor()
+    cursor.execute("""SELECT * FROM answer WHERE id=%s;""", (question_id))
+    rows = cursor.fetchall()
+    print(rows)
+    return rows

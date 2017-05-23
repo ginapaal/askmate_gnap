@@ -35,17 +35,10 @@ def new_question():
 @app.route('/question/<question_id>', methods=['GET', 'POST'])
 def display_answer_list(question_id):
 
-    table = read_from_csv('question.csv')
-    answer_table = read_from_csv('answers.csv')
-    reverse_answers_timeline = reversed(list(answer_table))
-    question_line = linefinder(table, question_id, 0)
-    question_title = question_line[2]
-    question_msg = question_line[3]
+    rows_answer = query_manager.read_from_answer(query_manager.connect_to_db(), question_id)
+    rows_correct = rows_answer[0][4]
 
-    answer_line = linefinder(answer_table, question_id, 2)
-    answer = answer_line[3]
-
-    return render_template('answers.html', answer_table=reverse_answers_timeline, answer=answer, line=answer_line, table=table, question_id=question_id, title=question_title, question_msg=question_msg)
+    return render_template('answers.html', answer=rows_correct)
 
 
 @app.route("/question/<question_id>/new-answer", methods=["GET", "POST"])
