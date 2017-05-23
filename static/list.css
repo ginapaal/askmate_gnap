@@ -1,0 +1,31 @@
+@import url(http://fonts.googleapis.com/css?family=Roboto:400,500,700,300,100);
+
+body {
+  background-color: white;
+  font-family: "Roboto", helvetica, arial, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  text-rendering: optimizeLegibility;
+}
+
+h1 { font-family: "Roboto", helvetica, arial, sans-serif; }
+
+
+#table-head { display: block;
+  margin: auto;
+  max-width: 600px;
+  padding:5px;
+  width: 100%; }
+
+#table-list { background: rgba(0,0,0,0.07);
+  border-radius:3px;
+  border-collapse: collapse;
+  height: 320px;
+  margin: auto;
+  max-width: 600px;
+  padding:5px;
+  width: 100%;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  animation: float 5s infinite; }
+
+.table-head{ background-color: gray; }

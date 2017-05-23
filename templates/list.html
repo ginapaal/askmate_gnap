@@ -4,6 +4,7 @@
 
 <head>
     <title> AskMate </title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='list.css') }}">
 </head>
 
 <body>
@@ -12,44 +13,32 @@
         <input type="submit" value="Ask a question">
     </form>
     <br><br>
-    <table>
-        <style>
-            table {
-                border-collapse: collapse;
-                border: 2px black solid;
-                font: 16px sans-serif;
-                width: 800px
-            }
-            
-            td {
-                border: 1px black solid;
-                padding: 8px;
-            }
-        </style>
+    <div class="table-title">
+        <table>
+            <thead class="table-head" id="table-head">
+                <tr>
+                    <th> Questions </th>
+                    <th> </th>
+                </tr>
+            </thead>
 
-        <thead>
-            <tr>
-                <th> Questions </th>
-                <th> </th>
-            </tr>
-        </thead>
+            <tbody class="table-list" id="table-list">
 
-        <tbody>
+                {% for item in table %}
+                <tr>
+                    <td>{{ item [3] }} </td>
+                    <td>
+                        <form action="/question/{{ item[0] }}" method="POST">
+                            <input type="submit" value="Answers">
+                        </form>
+                </tr>
+                {% endfor %}
 
-            {% for item in table %}
-            <tr>
-                <td>{{ item [3] }} </td>
-                <td>
-                    <form action="/question/{{ item[0] }}" method="POST">
-                        <input type="submit" value="Answers">
-                    </form>
-            </tr>
-            {% endfor %}
-
-        </tbody>
+            </tbody>
 
 
-    </table>
+        </table>
+    </div>
 </body>
 
 </html>
