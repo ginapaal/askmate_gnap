@@ -33,7 +33,7 @@ def make_query_readable(rows):
     return readable_data
 
 
-def insert_into_questions(conn):
+def insert_into_question(conn):
     cursor = conn.cursor()
     dt = datetime.now()
     message = request.form["new_question"]
@@ -53,5 +53,12 @@ def read_from_answer(conn, question_id):
     cursor = conn.cursor()
     cursor.execute("""SELECT * FROM answer WHERE id=%s;""", (question_id))
     rows = cursor.fetchall()
-    print(rows)
     return rows
+
+
+def insert_into_answer(conn, question_id):
+    cursor = conn.cursor()
+    dt = datetime.now()
+    message = request.form["new_answer"]
+    cursor.execute("""INSERT INTO answer (submission_time, question_id, message)
+     VALUES (%s,%s,%s);""", (dt, question_id, message))
