@@ -8,31 +8,35 @@
 </head>
 
 <body>
-    <h2> AskMate Answers </h2>
-    <form action="/question/<question_id>" method="GET"></form>
+    <div class="answers-title">
+        <h3> AskMate Answers </h3>
+    </div>
     <br>
-    <h3> {{ question_id }} </h3>
-    <h4> {{ question }} </h4>
-    <h5> {{ question_body }} </h5>
-
+    <div class="question-with-id">
+        <h3> {{ question_id }} </h3>
+        <h4> {{ question }} </h4>
+    </div>
     <br>
 
-    <table>
-        <thead>
-            <tr>
-                <th>Answers</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for item in answer %}
-            <tr>
-                <td> {{ item[4] }} </td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+    <div class="answer-list">
+        <table>
+            <thead class="answer-head" id="answer-head">
+                <tr>
+                    <th>Answers</th>
+                </tr>
+            </thead>
+            <tbody class="answer-body">
+                {% for item in answer %}
+                <tr>
+                    <td> {{ item[4] }} </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <br><br>
     <form action='/question/{{ question_id }}/new-answer' , method="GET">
-        <input type="submit" value="I can answer mate">
+        <input id="styled_button" type="submit" value="I can answer mate">
     </form>
 
 </body>
