@@ -30,7 +30,8 @@ def display_answer_list(question_id):
     if rows_answer == []:
         rows_answer = ""
 
-    return render_template('answers.html', answer=rows_answer, question_id=question_id, question=rows_question[0][4])
+    return render_template('answers.html', answer=rows_answer, question_id=question_id, question=rows_question[0][4],
+                           question_body=rows_question[0][5])
 
 
 @app.route("/question/<question_id>/new-answer", methods=["GET", "POST"])
