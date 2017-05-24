@@ -1,4 +1,4 @@
-body { background-color: white;
+body { background-color: ivory;
 font-family: Arial, Helvetica, sans-serif; 
 font-size: 16px;
 font-weight: 400; 
@@ -10,6 +10,42 @@ max-width: 600px;
 padding:5px;
 width: 100%;
 }
+
+#styled_button{
+   border-top: 1px solid #8a8a8a;
+   background: #808080;
+   background: -webkit-gradient(linear, left top, left bottom, from(#3d3d3d), to(#808080));
+   background: -webkit-linear-gradient(top, #3d3d3d, #808080);
+   background: -moz-linear-gradient(top, #3d3d3d, #808080);
+   background: -ms-linear-gradient(top, #3d3d3d, #808080);
+   background: -o-linear-gradient(top, #3d3d3d, #808080);
+   padding: 1px 5px;
+   border-radius: 40px;
+   -moz-box-shadow: rgba(0,0,0,1) 0 1px 0;
+   box-shadow: rgba(0,0,0,1) 0 1px 0;
+   text-shadow: rgba(0,0,0,.4) 0 1px 0;
+   transition: background-color 0.3s ease 0.1s;
+   color: #ffffff;
+   font-size: 16px;
+   font-family: Helvetica,Arial,Sans-Serif;
+   text-decoration: none;
+   vertical-align: middle;
+   position: relative;
+   margin: 0 0 0 -50px;
+   left: 50%;
+   right: 50%;
+   }
+#styled_button:hover{
+   border-top-color: lightseagreen;
+   background: salmon;
+   color: white;
+   }
+#styled_button:active{
+   border-top-color: lightseagreen;
+   background: lightgreen;
+   transition: background-color 0.2s ease 0.2s
+   }
+
 
 .table-title h3 {
    color: whitesmoke;
@@ -25,9 +61,8 @@ width: 100%;
   background: white;
   border-radius:3px;
   border-collapse: collapse;
-  height: 320px;
   margin: auto;
-  max-width: 600px;
+  max-width: 500px;
   padding:5px;
   width: 100%;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
@@ -36,7 +71,7 @@ width: 100%;
 
 th {
   color: white;;
-  background:#1b1e24;
+  background: gray;
   border-bottom:4px solid lightslategray;
   border-right: 1px solid darkslategray;
   font-size:23px;
@@ -63,3 +98,4 @@ tr:hover td {
   border-bottom: 1px solid #22262e; }
 
 h1 { text-align: center; }
+
