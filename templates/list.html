@@ -11,36 +11,35 @@
     <div class="table-title">
         <h1> AskMate <br> by G-nap </h1>
         <form action="/new_question" method='GET'>
-            <input id="ask-button" type="submit" value="Ask a question">
-        </form>
-        <br><br>
+    </div>
+    <p><input id='styled_button' type="submit" value="Ask a question"></p>
+    </form>
+    <br><br>
+    </div>
 
-        <div class="table-fill">
-            <table>
-                <thead class="table-head" id="table-head">
-                    <tr>
-                        <th> Questions </th>
-                        <th> </th>
-                    </tr>
-                </thead>
-
-                <tbody class="table-hover">
-
-                    {% for item in table %}
-                    <tr>
-                        <td>{{ item [4] }} </td>
-                        <td>
-                            <form action="/question/{{ item[0] }}" method="POST">
-                                <input type="submit" value="Answers">
-                            </form>
-                    </tr>
-                    {% endfor %}
-
-                </tbody>
+    <div class="table-fill">
+        <table>
+            <thead class="table-head" id="table-head">
+                <tr>
+                    <th> Questions </th>
+                    <th> </th>
+                </tr>
+            </thead>
+            <tbody class="table-hover">
+                {% for item in table %}
+                <tr>
+                    <td>{{ item [4] }} </td>
+                    <td>
+                        <form action="/question/{{ item[0] }}" method="POST">
+                            <input type="submit" value="Answers">
+                        </form>
+                </tr>
+                {% endfor %}
+            </tbody>
 
 
-            </table>
-        </div>
+        </table>
+    </div>
 </body>
 
 </html>
