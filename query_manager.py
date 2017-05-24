@@ -1,12 +1,5 @@
-import psycopg2
 from datetime import datetime
 from flask import request
-
-
-def connect_to_db():
-    conn = psycopg2.connect("dbname='matraiv' user='matraiv' host='localhost' password='1989matraiv17'")
-    conn.autocommit = True
-    return conn
 
 
 def insert_into_question(conn):
