@@ -4,17 +4,16 @@
 
 <head>
     <title> My Answer </title>
-    <link rel='stylesheet' type='text/css' href='textareas.css'>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='textareas.css') }}" />
 </head>
 
 <body>
-    <h2> AskMate Answers </h2>
-    <br>
+    <h2>AskMate<br>Answers</h2>
+    <h3> {{ question }} <br> {{ question_body }} </h3>
     <form action="/question/{{ question_id }}/new-answer" method="POST">
-        <p><label> Write your answer here </label></p>
-        <p><textarea name="new_answer" id="styled_answer"></textarea></p>
-        <br>
-        <p><input type="submit" value="Send My Answer"></p>
+        <div class='input_areas'>
+            <textarea name="new_answer" id="styled_textarea" placeholder="Write your answer here"></textarea>
+            <input type="submit" value="Send My Answer" id="styled_answer_button">
     </form>
 </body>
 
