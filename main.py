@@ -41,7 +41,6 @@ def new_answer(question_id):
         query_manager.insert_into_answer(connect_to_db(), question_id)
         return redirect("/")
     else:
-        print(question_id)
         return render_template('write_new_answer.html', question_id=question_id)
 
 
