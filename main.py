@@ -3,7 +3,6 @@ import query_manager
 from connect_manager import connect_to_db
 
 app = Flask(__name__)
- #TRY!!!!!!!!!!!!!
 
 
 @app.route('/', methods=["GET", "POST"])
@@ -37,12 +36,14 @@ def display_answer_list(question_id):
 @app.route("/question/<question_id>/new-answer", methods=["GET", "POST"])
 def new_answer(question_id):
 
+    question = query_manager.read_from_question(connect_to_db(), question_id)
+    question_body = query_manager.read_from_question(connect_to_db(), question_id)
     if request.method == "POST":
 
         query_manager.insert_into_answer(connect_to_db(), question_id)
         return redirect("/")
     else:
-        return render_template('write_new_answer.html', question_id=question_id)
+        return render_template('write_new_answer.html', question_id=question_id, question=question[0][4], question_body=question_body[0][5])
 
 
 if __name__ == "__main__":
