@@ -3,15 +3,15 @@
 
 <head>
     <title>AskMate - New Question</title>
-    <link rel='stylesheet' type='text/css' href='textareas.css'>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='textareas.css') }}" />
 </head>
 
 <body>
-    <h2> AskMate Your Question:</h2>
+    <h2> AskMate <br> Your Question:</h2>
     <form action="/new_question" method="POST">
     <div class='input_areas'>
         <input label='Question Title' id='styled_title' type="text" name="title"></p>
-        <textarea label='My Question' id='styled_textarea' name="new_question"></textarea></p>
+        <textarea label='My Question' id='styled_textarea' name="new_question" placeholder="Specify your question"></textarea></p>
     </div>
         <p><input id='styled_button' type="submit" value="Send Question"></p>
     </form>
