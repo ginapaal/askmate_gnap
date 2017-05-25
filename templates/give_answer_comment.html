@@ -10,7 +10,7 @@
 <body>
     <h2>AskMate Comments</h2>
     <h3> {{ answer }} </h3>
-    <form action="/question/{{ answer_id }}/new-comment" method="POST">
+    <form action="/answer/{{ answer_id }}/new-comment" method="POST">
         <div class='input_areas'>
             <textarea name="new_comment" id="styled_textarea" placeholder="Write your comments here"></textarea>
             <input type="submit" value="Add My Comment" id="styled_answer_button">

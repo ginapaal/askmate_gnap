@@ -84,10 +84,8 @@ def add_new_a_comment(answer_id):
         connect_to_db(), """SELECT message FROM answer WHERE id=%s;""", answer_id)
 
     if request.method == "POST":
-        query_manager.insert_into_db(connect_to_db(), answer_id, new_comment,
-                                     """INSERT INTO comment (answer_id, message, submission_time) VALUES(%s,%s,%s);""",
-                                     (answer_id, message, dt))
-        return redirect("/question/" + answer_id + "/comments")
+        query_manager.add_a_comment(connect_to_db(), answer_id)
+        return redirect("/answer/" + answer_id + "/comments")
     else:
         return render_template("give_answer_comment.html", answer_id=answer_id, answer=answer)
 

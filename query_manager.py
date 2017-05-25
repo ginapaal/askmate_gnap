@@ -46,12 +46,21 @@ def read_from_a_comments(conn, answer_id):
     rows = cursor.fetchall()
     return rows
 
+
 def add_q_comment(conn, question_id):
     cursor = conn.cursor()
     dt = datetime.now()
     message = request.form["new_comment"]
     cursor.execute("""INSERT INTO comment (question_id, message, submission_time) VALUES(%s,%s,%s);""",
                    (question_id, message, dt))
+
+
+def add_a_comment(conn, answer_id):
+    cursor = conn.cursor()
+    dt = datetime.now()
+    message = request.form["new_comment"]
+    cursor.execute("""INSERT INTO comment (answer_id, message, submission_time) VALUES(%s,%s,%s);""",
+                   (answer_id, message, dt))
 
 
 def readable_query(query):
