@@ -64,9 +64,7 @@ def add_new_q_comment(question_id):
     question_body = query_manager.show_db_item(
         connect_to_db(), """SELECT message FROM question WHERE id=%s;""", question_id)
     if request.method == "POST":
-        query_manager.insert_into_db(connect_to_db(), question_id, new_comment,
-                                     """INSERT INTO comment (question_id, message, submission_time) VALUES(%s,%s,%s);""",
-                                     (question_id, message, dt))
+        query_manager.add_q_comment(connect_to_db(), question_id)
         return redirect("/question/" + question_id + "/comments")
     else:
         return render_template("give_question_comment.html", question_id=question_id, question=question, question_body=question_body)
