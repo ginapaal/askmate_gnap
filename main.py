@@ -23,7 +23,6 @@ def new_question():
 
 @app.route('/question/<question_id>', methods=['GET', 'POST'])
 def display_answer_list(question_id):
-
     rows_answer = query_manager.reader_by_id(
         connect_to_db(), """SELECT * FROM answer WHERE question_id=%s;""", question_id)
     question = query_manager.show_db_item(connect_to_db(), """SELECT title FROM question WHERE id=%s;""", question_id)
@@ -35,7 +34,6 @@ def display_answer_list(question_id):
 
 @app.route("/question/<question_id>/new-answer", methods=["GET", "POST"])
 def new_answer(question_id):
-
     question = query_manager.show_db_item(connect_to_db(), """SELECT title FROM question WHERE id=%s;""", question_id)
     question_body = query_manager.show_db_item(
         connect_to_db(), """SELECT message FROM question WHERE id=%s;""", question_id)
@@ -49,7 +47,7 @@ def new_answer(question_id):
 
 
 @app.route("/question/<question_id>/comments", methods=['POST', 'GET'])
-def display_comment_list(question_id):
+def display_q_comment_list(question_id):
     rows_comments = query_manager.read_from_q_comments(connect_to_db(), question_id)
     question = query_manager.show_db_item(connect_to_db(), """SELECT title FROM question WHERE id=%s;""", question_id)
     question_body = query_manager.show_db_item(
@@ -63,6 +61,7 @@ def add_new_q_comment(question_id):
     question = query_manager.show_db_item(connect_to_db(), """SELECT title FROM question WHERE id=%s;""", question_id)
     question_body = query_manager.show_db_item(
         connect_to_db(), """SELECT message FROM question WHERE id=%s;""", question_id)
+
     if request.method == "POST":
         query_manager.add_q_comment(connect_to_db(), question_id)
         return redirect("/question/" + question_id + "/comments")
