@@ -38,3 +38,19 @@ def insert_into_answer(conn, question_id):
     message = request.form["new_answer"]
     cursor.execute("""INSERT INTO answer (submission_time, question_id, message)
      VALUES (%s,%s,%s);""", (dt, question_id, message))
+
+
+def read_from_q_comments(conn, question_id):
+    cursor = conn.cursor()
+    cursor.execute("""SELECT * FROM comment WHERE question_id="%s", (question_id);""")
+    rows = cursor.fetchall()
+    return rows
+
+
+def add_q_comment(conn, question_id):
+    cursor = conn.cursor()
+    t = datetime.now()
+    message = request.form["new_comment"]
+    cursor.execute("""INSERT INTO comment WHERE (submission_time, question_id, message) VALUES(%s,%s,%s);""", (question_id))
+    rows = cursor.fetchall()
+    return rows
