@@ -24,9 +24,11 @@ def new_question():
 @app.route('/question/<question_id>', methods=['GET', 'POST'])
 def display_answer_list(question_id):
 
-    rows_answer = query_manager.reader_by_id(connect_to_db(), """SELECT * FROM answer WHERE question_id=%s;""",question_id)
+    rows_answer = query_manager.reader_by_id(
+        connect_to_db(), """SELECT * FROM answer WHERE question_id=%s;""", question_id)
     question = query_manager.show_db_item(connect_to_db(), """SELECT title FROM question WHERE id=%s;""", question_id)
-    question_body = query_manager.show_db_item(connect_to_db(), """SELECT message FROM question WHERE id=%s;""", question_id)
+    question_body = query_manager.show_db_item(
+        connect_to_db(), """SELECT message FROM question WHERE id=%s;""", question_id)
     return render_template('answers.html', answer=rows_answer, question_id=question_id, question=question,
                            question_body=question_body)
 
@@ -35,7 +37,8 @@ def display_answer_list(question_id):
 def new_answer(question_id):
 
     question = query_manager.show_db_item(connect_to_db(), """SELECT title FROM question WHERE id=%s;""", question_id)
-    question_body = query_manager.show_db_item(connect_to_db(), """SELECT message FROM question WHERE id=%s;""", question_id)
+    question_body = query_manager.show_db_item(
+        connect_to_db(), """SELECT message FROM question WHERE id=%s;""", question_id)
     if request.method == "POST":
 
         query_manager.insert_into_answer(connect_to_db(), question_id)
@@ -49,7 +52,8 @@ def new_answer(question_id):
 def display_comment_list(question_id):
     rows_comments = query_manager.read_from_q_comments(connect_to_db(), question_id)
     question = query_manager.show_db_item(connect_to_db(), """SELECT title FROM question WHERE id=%s;""", question_id)
-    question_body = query_manager.show_db_item(connect_to_db(), """SELECT message FROM question WHERE id=%s;""", question_id)
+    question_body = query_manager.show_db_item(
+        connect_to_db(), """SELECT message FROM question WHERE id=%s;""", question_id)
     return render_template("question_comment.html", comment=rows_comments, question_id=question_id,
                            question=question, question_body=question_body)
 
@@ -57,7 +61,8 @@ def display_comment_list(question_id):
 @app.route("/question/<question_id>/new-comment", methods=['POST', 'GET'])
 def add_new_q_comment(question_id):
     question = query_manager.show_db_item(connect_to_db(), """SELECT title FROM question WHERE id=%s;""", question_id)
-    question_body = query_manager.show_db_item(connect_to_db(), """SELECT message FROM question WHERE id=%s;""", question_id)
+    question_body = query_manager.show_db_item(
+        connect_to_db(), """SELECT message FROM question WHERE id=%s;""", question_id)
     if request.method == "POST":
         query_manager.insert_into_db(connect_to_db(), question_id, new_comment,
                                      """INSERT INTO comment (question_id, message, submission_time) VALUES(%s,%s,%s);""",
@@ -73,6 +78,20 @@ def display_a_comment_list(answer_id):
     answer = query_manager.show_db_item(connect_to_db(), """SELECT message FROM answer WHERE id=%s;""", answer_id)
     return render_template("answer_comment.html", comment=rows_comments, answer_id=answer_id,
                            answer=answer)
+
+
+@app.route('/answer/<answer_id>/new-comment', methods=["POST", "GET"])
+def add_new_a_comment(answer_id):
+    answer = query_manager.show_db_item(
+        connect_to_db(), """SELECT message FROM answer WHERE id=%s;""", answer_id)
+
+    if request.method == "POST":
+        query_manager.insert_into_db(connect_to_db(), answer_id, new_comment,
+                                     """INSERT INTO comment (answer_id, message, submission_time) VALUES(%s,%s,%s);""",
+                                     (answer_id, message, dt))
+        return redirect("/question/" + answer_id + "/comments")
+    else:
+        return render_template("give_answer_comment.html", answer_id=answer_id, answer=answer)
 
 
 if __name__ == "__main__":
