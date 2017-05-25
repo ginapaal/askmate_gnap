@@ -1,3 +1,6 @@
+body{
+    background-color: ivory
+}
 #styled_title  {   
     margin-top: 10px;
     margin-left: 50px;
@@ -54,45 +57,59 @@
     outline-width: 0;
 }
 
-#styled_button{
-   border-top: 1px solid #8a8a8a;
-   background: -webkit-linear-gradient(top, #3d3d3d, #808080);
-   padding: 1px 5px;
-   border-radius: 40px;
-   box-shadow: rgba(0,0,0,1) 0 1px 0;
-   text-shadow: rgba(0,0,0,.4) 0 1px 0;
-   transition: background-color 0.3s ease 0.1s;
-   color: #ffffff;
-   font-size: 16px;
-   font-family: Helvetica,Arial,Sans-Serif;
-   text-decoration: none;
-   vertical-align: middle;
-   position: relative;
-   margin: 0 0 0 -60px;
-   left: 50%;
-   right: 50%;
+#styled_ask_button{
+    border-top: 1px solid #8a8a8a;
+    background: -webkit-linear-gradient(top, salmon, salmon);
+    padding: 1px 5px;
+    border-radius: 40px;
+    box-shadow: rgba(0,0,0,1) 0 1px 0;
+    text-shadow: rgba(0,0,0,.4) 0 1px 0;
+    transition: background-color 0.3s ease 0.1s;
+    color: #ffffff;
+    font-size: 16px;
+    font-family: Sans-Serif;
+    text-decoration: none;
+    vertical-align: middle;
+    position: relative;
+    margin: -5px 0px 0px -62px;
+    left: 50%;
+    right: 50%;
    }
-#styled_button:hover{
+
+#styled_ask_button:hover{
    border-top-color: lightseagreen;
-   background: salmon;
-   color: white;
+   background: lightgreen;
+   color: darkslategrey;
    }
-#styled_button:active{
+
+#styled_ask_button:active{
    border-top-color: lightseagreen;
    background: lightgreen;
    transition: background-color 0.2s ease 0.2s
    }
+
 h2{
-    text-align: center;
-    font-family: "helvetica neue", Helvetica,Arial,sans-serif
+    color: dimgray;
+    font-size: 30px;
+    font-weight: 400;
+    font-style:normal;
+    font-family: Arial, Helvetica, sans-serif;
+    text-shadow: -1px -1px 1px rgba(0, 0, 0, 0.1);
+    text-transform:uppercase;
+    text-align: center;margin-top: 40px
     }
 h3{
+    color: dimgray;
+    font-size: 20px;
+    font-family: Arial, Helvetica, sans-serif;
     text-align: center;
-    font-family: "helvetica neue", Helvetica,Arial,sans-serif
-}
+    margin-top: 86px;
+    margin-bottom: -78px;
+    }
+
 #styled_answer_button{
     border-top: 1px solid #8a8a8a;
-    background: -webkit-linear-gradient(top, #3d3d3d, #808080);
+    background: -webkit-linear-gradient(top, salmon, salmon);
     padding: 1px 5px;
     border-radius: 40px;
     box-shadow: rgba(0,0,0,1) 0 1px 0;
@@ -108,13 +125,38 @@ h3{
     left: 50%;
     right: 50%;
     }
+
 #styled_answer_button:hover{
    border-top-color: lightseagreen;
-   background: salmon;
-   color: white;
+   background: lightgreen;
+   color: darkslategrey;
    }
+
 #styled_answer_button:active{
    border-top-color: lightseagreen;
    background: lightgreen;
    transition: background-color 0.2s ease 0.2s
    }
+
+#styled_textarea_for_comments{
+  margin-top: 10px;
+  margin-left: 50px;
+  width: 500px;
+  height: 150px;
+  background: none repeat scroll 0 0 rgba(0, 0, 0, 0.07);
+  border-image: none;
+  border-radius: 6px;
+  border-style: none solid solid none;
+  border-width: medium 1px 1px medium;
+  color: black;
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-size: 1em;
+  line-height: 1.4em;
+  padding: 5px 8px;
+  transition: background-color 0.3s ease 0.1s;
+  vertical-align: middle;
+  position: relative;
+  margin: 20px 10px 100px -250px;
+  left: 50%;
+  right: 50%;
+}
