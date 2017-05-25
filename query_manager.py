@@ -40,6 +40,12 @@ def read_from_q_comments(conn, question_id):
     return rows
 
 
+def read_from_a_comments(conn, answer_id):
+    cursor = conn.cursor()
+    cursor.execute("""SELECT * FROM comment WHERE answer_id=%s;""", (answer_id))
+    rows = cursor.fetchall()
+    return rows
+
 def add_q_comment(conn, question_id):
     cursor = conn.cursor()
     dt = datetime.now()

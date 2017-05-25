@@ -59,10 +59,20 @@ def add_new_q_comment(question_id):
     question = query_manager.show_db_item(connect_to_db(), """SELECT title FROM question WHERE id=%s;""", question_id)
     question_body = query_manager.show_db_item(connect_to_db(), """SELECT message FROM question WHERE id=%s;""", question_id)
     if request.method == "POST":
-        query_manager.add_q_comment(connect_to_db(), question_id)
+        query_manager.insert_into_db(connect_to_db(), question_id, new_comment,
+                                     """INSERT INTO comment (question_id, message, submission_time) VALUES(%s,%s,%s);""",
+                                     (question_id, message, dt))
         return redirect("/question/" + question_id + "/comments")
     else:
         return render_template("give_question_comment.html", question_id=question_id, question=question, question_body=question_body)
+
+
+@app.route("/answer/<answer_id>/comments", methods=['POST', 'GET'])
+def display_a_comment_list(answer_id):
+    rows_comments = query_manager.read_from_a_comments(connect_to_db(), answer_id)
+    answer = query_manager.show_db_item(connect_to_db(), """SELECT message FROM answer WHERE id=%s;""", answer_id)
+    return render_template("answer_comment.html", comment=rows_comments, answer_id=answer_id,
+                           answer=answer)
 
 
 if __name__ == "__main__":

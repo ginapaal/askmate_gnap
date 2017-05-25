@@ -1,0 +1,40 @@
+<!doctype HTML>
+
+<html>
+
+<head>
+    <title> AskMate Answer comments </title>
+    <link rel="stylesheet" type="text/css" href='answers.css'>
+</head>
+
+<body>
+    <div class="answers-title">
+        <h3> AskMate answer comments </h3>
+    </div>
+    <br>
+
+    <h4> {{ answer }} </h4>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Comments</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in comment %}
+            <tr>
+                <td> {{ item[3] }} </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    </div>
+    <br><br>
+    <form action='/answer/{{ answer_id }}/new-comment' , method="GET">
+        <input id="styled_button" type="submit" value="Add a comment">
+    </form>
+
+</body>
+
+</html>
