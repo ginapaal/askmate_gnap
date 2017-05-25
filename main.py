@@ -60,7 +60,6 @@ def display_comment_list(question_id):
 
 @app.route("/question/<question_id>/new-comment", methods=['POST', 'GET'])
 def add_new_q_comment(question_id):
-    #question = query_manager.read_from_question(connect_to_db(), question_id)
     question = query_manager.show_db_item(connect_to_db(), """SELECT title FROM question WHERE id=%s;""", question_id)
     question_body = query_manager.show_db_item(connect_to_db(), """SELECT message FROM question WHERE id=%s;""", question_id)
     if request.method == "POST":
