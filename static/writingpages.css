@@ -82,7 +82,8 @@
    background: lightgreen;
    transition: background-color 0.2s ease 0.2s
    }
-h2{
+
+h2 {
    color: dimgray;
    font-size: 30px;
    font-weight: 400;
@@ -92,7 +93,28 @@ h2{
    text-transform:uppercase;
    text-align: center;margin-top: 40px
 }
-h3{
+
+.answer-comment-title h2 {
+    color: dimgray;
+   font-size: 30px;
+   font-weight: 400;
+   font-style:normal;
+   font-family: Arial, Helvetica, sans-serif;
+   text-shadow: -1px -1px 1px rgba(0, 0, 0, 0.1);
+   text-transform:uppercase;
+   text-align: center;margin-top: 40px
+}
+
+h3 {
+    color: dimgray;
+    font-size: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+    margin-top: 86px;
+    margin-bottom: -78px;
+}
+
+.answer-body h3 {
     color: dimgray;
     font-size: 20px;
     font-family: Arial, Helvetica, sans-serif;

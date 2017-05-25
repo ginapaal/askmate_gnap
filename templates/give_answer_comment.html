@@ -8,8 +8,12 @@
 </head>
 
 <body>
-    <h2>AskMate Comments</h2>
-    <h3> {{ answer }} </h3>
+    <div class="answer-comment-title">
+        <h2>AskMate Comments</h2>
+    </div>
+    <div class="answer-body">
+        <h3> {{ answer }} </h3>
+    </div>
     <form action="/answer/{{ answer_id }}/new-comment" method="POST">
         <div class='input_areas'>
             <textarea name="new_comment" id="styled_textarea" placeholder="Write your comments here"></textarea>
