@@ -1,6 +1,3 @@
-body{
-    background-color: ivory
-}
 #styled_title  {   
     margin-top: 10px;
     margin-left: 50px;
@@ -57,47 +54,44 @@ body{
     outline-width: 0;
 }
 
-#styled_ask_button{
-    border-top: 1px solid #8a8a8a;
-    background: -webkit-linear-gradient(top, salmon, salmon);
-    padding: 1px 5px;
-    border-radius: 40px;
-    box-shadow: rgba(0,0,0,1) 0 1px 0;
-    text-shadow: rgba(0,0,0,.4) 0 1px 0;
-    transition: background-color 0.3s ease 0.1s;
-    color: #ffffff;
-    font-size: 16px;
-    font-family: Sans-Serif;
-    text-decoration: none;
-    vertical-align: middle;
-    position: relative;
-    margin: -5px 0px 0px -62px;
-    left: 50%;
-    right: 50%;
+#styled_button{
+   border-top: 1px solid #8a8a8a;
+   background: -webkit-linear-gradient(top, #3d3d3d, #808080);
+   padding: 1px 5px;
+   border-radius: 40px;
+   box-shadow: rgba(0,0,0,1) 0 1px 0;
+   text-shadow: rgba(0,0,0,.4) 0 1px 0;
+   transition: background-color 0.3s ease 0.1s;
+   color: #ffffff;
+   font-size: 16px;
+   font-family: Helvetica,Arial,Sans-Serif;
+   text-decoration: none;
+   vertical-align: middle;
+   position: relative;
+   margin: 0 0 0 -60px;
+   left: 50%;
+   right: 50%;
    }
-
-#styled_ask_button:hover{
+#styled_button:hover{
    border-top-color: lightseagreen;
-   background: lightgreen;
-   color: darkslategrey;
+   background: salmon;
+   color: white;
    }
-
-#styled_ask_button:active{
+#styled_button:active{
    border-top-color: lightseagreen;
    background: lightgreen;
    transition: background-color 0.2s ease 0.2s
    }
-
 h2{
-    color: dimgray;
-    font-size: 30px;
-    font-weight: 400;
-    font-style:normal;
-    font-family: Arial, Helvetica, sans-serif;
-    text-shadow: -1px -1px 1px rgba(0, 0, 0, 0.1);
-    text-transform:uppercase;
-    text-align: center;margin-top: 40px
-    }
+   color: dimgray;
+   font-size: 30px;
+   font-weight: 400;
+   font-style:normal;
+   font-family: Arial, Helvetica, sans-serif;
+   text-shadow: -1px -1px 1px rgba(0, 0, 0, 0.1);
+   text-transform:uppercase;
+   text-align: center;margin-top: 40px
+}
 h3{
     color: dimgray;
     font-size: 20px;
@@ -105,8 +99,7 @@ h3{
     text-align: center;
     margin-top: 86px;
     margin-bottom: -78px;
-    }
-
+}
 #styled_answer_button{
     border-top: 1px solid #8a8a8a;
     background: -webkit-linear-gradient(top, salmon, salmon);
@@ -125,38 +118,135 @@ h3{
     left: 50%;
     right: 50%;
     }
-
 #styled_answer_button:hover{
    border-top-color: lightseagreen;
    background: lightgreen;
    color: darkslategrey;
    }
-
 #styled_answer_button:active{
    border-top-color: lightseagreen;
    background: lightgreen;
    transition: background-color 0.2s ease 0.2s
    }
-
-#styled_textarea_for_comments{
-  margin-top: 10px;
-  margin-left: 50px;
-  width: 500px;
-  height: 150px;
-  background: none repeat scroll 0 0 rgba(0, 0, 0, 0.07);
-  border-image: none;
-  border-radius: 6px;
-  border-style: none solid solid none;
-  border-width: medium 1px 1px medium;
-  color: black;
-  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
-  font-size: 1em;
-  line-height: 1.4em;
-  padding: 5px 8px;
-  transition: background-color 0.3s ease 0.1s;
-  vertical-align: middle;
-  position: relative;
-  margin: 20px 10px 100px -250px;
-  left: 50%;
-  right: 50%;
+.table-fill {
+  background: white;
+  border-radius:3px;
+  border-collapse: collapse;
+  margin: auto;
+  max-width: 500px;
+  padding:5px;
+  width: 100%;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  animation: float 5s infinite;
 }
+
+th {
+  color: white;;
+  background: gray;
+  border-bottom:4px solid lightslategray;
+  border-right: 1px solid darkslategray;
+  font-size:23px;
+  font-weight: 100;
+  padding:24px;
+  width: 500px;
+  text-align:left;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+  vertical-align: middle;
+}
+
+tr {
+  border-top: 1px solid #C1C3D1;
+  border-bottom: 1px solid #C1C3D1;
+  color:#666B85;
+  font-size:16px;
+  font-weight:normal;
+  text-shadow: 0 1px 1px rgba(256, 256, 256, 0.1);
+}
+
+tr:hover td {
+  background:#4E5066;
+  color:#FFFFFF;
+  border-top: 1px solid #22262e;
+  border-bottom: 1px solid #22262e; 
+}
+td {
+  background: white;
+  color: darkslategrey;
+  border-top: 1px solid #22262e;
+  border-bottom: 1px solid #22262e;
+}
+td img {
+    display: block;
+    margin: auto;
+}
+.question-with-id {
+    color: dimgray;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    text-align: center;
+    font-weight: bold;
+}
+.answers-title{
+   color: dimgray;
+   font-size: 30px;
+   font-weight: 400;
+   font-style:normal;
+   font-family: Arial, Helvetica, sans-serif;
+   text-shadow: -1px -1px 1px rgba(0, 0, 0, 0.1);
+   text-transform:uppercase;
+   text-align: center;
+   margin-bottom: 100px;
+}
+.answer-list {
+   background: white;
+   border-radius:3px;
+   border-collapse: collapse;
+   margin: auto;
+   max-width: 500px;
+   padding:5px;
+   width: 100%;
+   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+   animation: float 5s infinite;
+}
+body { 
+  background-color: ivory;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  vertical-align: middle; 
+}
+.answers-with-id {
+    color: dimgray;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    text-align: center;
+    font-weight: bold;
+}
+#styled_ask_button{
+    border-top: 1px solid #8a8a8a;
+    background: -webkit-linear-gradient(top, salmon, salmon);
+    padding: 1px 5px;
+    border-radius: 40px;
+    box-shadow: rgba(0,0,0,1) 0 1px 0;
+    text-shadow: rgba(0,0,0,.4) 0 1px 0;
+    transition: background-color 0.3s ease 0.1s;
+    color: #ffffff;
+    font-size: 16px;
+    font-family: Sans-Serif;
+    text-decoration: none;
+    vertical-align: middle;
+    position: relative;
+    margin: -5px 0px 0px -62px;
+    left: 50%;
+    right: 50%;
+   }
+#styled_ask_button:hover{
+   border-top-color: lightseagreen;
+   background: lightgreen;
+   color: darkslategrey;
+   }
+#styled_ask_button:active{
+   border-top-color: lightseagreen;
+   background: lightgreen;
+   transition: background-color 0.2s ease 0.2s
+   }

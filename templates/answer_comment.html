@@ -4,31 +4,32 @@
 
 <head>
     <title> AskMate Answer comments </title>
-    <link rel="stylesheet" type="text/css" href='answers.css'>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='comment.css') }}">
 </head>
 
 <body>
-    <div class="answers-title">
+    <div class="answer-title">
         <h3> AskMate answer comments </h3>
     </div>
     <br>
-
-    <h4> {{ answer }} </h4>
-
-    <table>
-        <thead>
-            <tr>
-                <th>Comments</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for item in comment %}
-            <tr>
-                <td> {{ item[3] }} </td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+    <div class="answer-with-id">
+        <h4> {{ answer }} </h4>
+    </div>
+    <div class="table-fill">
+        <table>
+            <thead class="answer-head" id="answer-head">
+                <tr>
+                    <th>Comments</th>
+                </tr>
+            </thead>
+            <tbody class="answer-body">
+                {% for item in comment %}
+                <tr>
+                    <td> {{ item[3] }} </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
     </div>
     <br><br>
     <form action='/answer/{{ answer_id }}/new-comment' , method="GET">

@@ -99,5 +99,11 @@ tr:hover td {
   border-top: 1px solid #22262e;
   border-bottom: 1px solid #22262e; }
 
-h1 { text-align: center; }
+h1 { 
+  text-align: center;
+}
 
+td img {
+    display: block;
+    margin: auto;
+}

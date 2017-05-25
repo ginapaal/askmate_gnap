@@ -8,11 +8,16 @@
 </head>
 
 <body>
-    <h2>AskMate<br>Answers</h2>
-    <h3> {{ question }} <br> {{ question_body }} </h3>
+    <div class="answers-title">
+        <h2>AskMate Answers</h2>
+    </div>
+    <div class="answers-with-id">
+        <h4> {{ question }} </h4>
+        <h4> {{ question_body }} </h4>
+    </div>
     <form action="/question/{{ question_id }}/new-answer" method="POST">
         <div class='input_areas'>
-            <textarea name="new_answer" id="styled_textarea" placeholder="Write your answer here" minlength="10"></textarea>
+            <textarea name="new_answer" id="styled_textarea" placeholder="Write your answer here" minlength=10></textarea>
             <input type="submit" value="Send My Answer" id="styled_answer_button">
     </form>
 </body>

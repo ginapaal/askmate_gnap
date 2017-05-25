@@ -4,11 +4,11 @@
 
 <head>
     <title> AskMate Question comments </title>
-    <link rel="stylesheet" type="text/css" href=''>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='comment.css') }}">
 </head>
 
 <body>
-    <div class="answers-title">
+    <div class="question-title">
         <h3> AskMate Question comments </h3>
     </div>
     <br>
@@ -18,14 +18,14 @@
     </div>
     <br>
 
-    <div class="answer-list">
+    <div class="table-fill">
         <table>
-            <thead class="answer-head" id="answer-head">
+            <thead>
                 <tr>
                     <th>Comments</th>
                 </tr>
             </thead>
-            <tbody class="answer-body">
+            <tbody>
                 {% for item in comment %}
                 <tr>
                     <td> {{ item[3] }} </td>
