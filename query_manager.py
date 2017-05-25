@@ -18,20 +18,6 @@ def read_from_db(conn):
     return rows
 
 
-def read_from_question(conn, question_id):
-    cursor = conn.cursor()
-    cursor.execute("""SELECT * FROM question WHERE id=%s;""", (question_id))
-    rows = cursor.fetchall()
-    return rows
-
-
-def read_from_answer(conn, question_id):
-    cursor = conn.cursor()
-    cursor.execute("""SELECT * FROM answer WHERE question_id=%s;""", (question_id))
-    rows = cursor.fetchall()
-    return rows
-
-
 def reader_by_id(conn, query, question_id):
     cursor = conn.cursor()
     cursor.execute(query, (question_id))
