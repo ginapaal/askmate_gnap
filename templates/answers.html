@@ -24,12 +24,18 @@
             <thead class="answer-head" id="answer-head">
                 <tr>
                     <th>Answers</th>
+                    <th id='commen_part'> Comments </th>
                 </tr>
             </thead>
             <tbody class="answer-body">
                 {% for item in answer %}
                 <tr>
                     <td> {{ item[4] }} </td>
+                    <td>
+                        <a href='/answer/{{ item[0] }}/comments'>
+                            <img src="https://maxcdn.icons8.com/Share/icon/dotty/Messaging//speech_bubble_with_dots1600.png" width="30" height="30">
+                        </a>
+                    </td>
                 </tr>
                 {% endfor %}
             </tbody>
