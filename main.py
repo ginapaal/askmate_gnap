@@ -24,7 +24,7 @@ def new_question():
 @app.route('/question/<question_id>', methods=['GET', 'POST'])
 def display_answer_list(question_id):
 
-    rows_answer = query_manager.read_from_answer(connect_to_db(), question_id)
+    rows_answer = query_manager.reader_by_id(connect_to_db(), """SELECT * FROM answer WHERE question_id=%s;""",question_id)
     rows_question = query_manager.read_from_question(connect_to_db(), question_id)
     if rows_answer == []:
         rows_answer = ""
@@ -36,24 +36,26 @@ def display_answer_list(question_id):
 @app.route("/question/<question_id>/new-answer", methods=["GET", "POST"])
 def new_answer(question_id):
 
-    question = query_manager.read_from_question(connect_to_db(), question_id)
-    question_body = query_manager.read_from_question(connect_to_db(), question_id)
+    question = query_manager.show_db_item(connect_to_db(), """SELECT title FROM question WHERE id=%s;""", question_id)
+    question_body = query_manager.show_db_item(connect_to_db(), """SELECT message FROM question WHERE id=%s;""", question_id)
     if request.method == "POST":
 
         query_manager.insert_into_answer(connect_to_db(), question_id)
         return redirect("/")
     else:
-        return render_template('write_new_answer.html', question_id=question_id, question=question[0][4], question_body=question_body[0][5])
+        return render_template('write_new_answer.html', question_id=question_id, question=question,
+                               question_body=question_body)
 
 
 @app.route("/question/<question_id>/comments", methods=['GET'])
 def display_comment_list(question_id):
-    rows_comments = query_manager.read_from_q_comments(connect_to_db(), question_id)
+    rows_comments = query_manager.read_from_q_comments(connect_to_db, (question_id))
     rows_question = query_manager.read_from_question(connect_to_db(), question_id)
     if rows_comments == []:
         rows_comments = ""
-
     return render_template("question_comment.html", comment=rows_comments, question_id=question_id, question=rows_question[0][4], question_body=rows_question[0][5])
+
+
 
 
 if __name__ == "__main__":

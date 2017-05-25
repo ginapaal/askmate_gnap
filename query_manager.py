@@ -32,6 +32,13 @@ def read_from_answer(conn, question_id):
     return rows
 
 
+def reader_by_id(conn, query, question_id):
+    cursor = conn.cursor()
+    cursor.execute(query, (question_id))
+    rows = cursor.fetchall()
+    return rows
+
+
 def insert_into_answer(conn, question_id):
     cursor = conn.cursor()
     dt = datetime.now()
@@ -44,6 +51,7 @@ def read_from_q_comments(conn, question_id):
     cursor = conn.cursor()
     cursor.execute("""SELECT * FROM comment WHERE question_id=%s;""", (question_id))
     rows = cursor.fetchall()
+    print(question_id)
     return rows
 
 
@@ -54,3 +62,20 @@ def add_q_comment(conn, question_id):
     cursor.execute("""INSERT INTO comment WHERE (submission_time, question_id, message) VALUES(%s,%s,%s);""", (question_id))
     rows = cursor.fetchall()
     return rows
+
+
+def readable_query(query):
+    readable = ""
+    for item in query:
+        for word in item:
+            readable += word
+    return readable
+
+
+def show_db_item(conn, query, question_id):
+    """
+    Makes a query then returns it in readable form.
+    """
+    query = reader_by_id(conn, query, question_id)
+    data = readable_query(query)
+    return data
