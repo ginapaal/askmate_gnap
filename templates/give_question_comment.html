@@ -12,7 +12,7 @@
     <h3> {{ question }} <br> {{ question_body }} </h3>
     <form action="/question/{{ question_id }}/new-comment" method="POST">
         <div class='input_areas'>
-            <textarea name="new_comment" id="styled_textarea" placeholder="Write your comments here"></textarea>
+            <textarea name="new_comment" id="styled_textarea" placeholder="Write your comments here" minlength="10"></textarea>
             <input type="submit" value="Add My Comment" id="styled_answer_button">
     </form>
 </body>
