@@ -48,7 +48,7 @@ def new_answer(question_id):
 
 @app.route("/question/<question_id>/comments", methods=['GET'])
 def display_comment_list(question_id):
-    rows_comments = query_manager.read_from_q_comments(connect_to_db, (question_id))
+    rows_comments = query_manager.read_from_q_comments(connect_to_db(), question_id)
     rows_question = query_manager.read_from_question(connect_to_db(), question_id)
     if rows_comments == []:
         rows_comments = ""

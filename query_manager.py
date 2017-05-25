@@ -42,7 +42,7 @@ def insert_into_answer(conn, question_id):
 
 def read_from_q_comments(conn, question_id):
     cursor = conn.cursor()
-    cursor.execute("""SELECT * FROM comment WHERE question_id="%s", (question_id);""")
+    cursor.execute("""SELECT * FROM comment WHERE question_id=%s;""", (question_id))
     rows = cursor.fetchall()
     return rows
 
