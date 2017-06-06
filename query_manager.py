@@ -78,3 +78,31 @@ def show_db_item(conn, query, question_id):
     query = reader_by_id(conn, query, question_id)
     data = readable_query(query)
     return data
+
+
+def question_vote_like(conn, question_id):
+    cursor = conn.cursor()
+    cursor.execute("""UPDATE question SET vote_number=vote_number+1 WHERE question_id=%s;""", (question_id,))
+    rows = cursor.fetchall()
+    return rows
+
+
+def question_vote_dislike(conn, question_id):
+    cursor = conn.cursor()
+    cursor.execute("""UPDATE question SET vote_number=vote_number-1 WHERE question_id=%s;""", (question_id,))
+    rows = cursor.fetchall()
+    return rows
+
+
+def answer_vote_like(conn, answer_id):
+    cursor = conn.cursor()
+    cursor.execute("""UPDATE answer SET vote_number=vote_number+1 WHERE answer_id=%s;""", (answer_id,))
+    rows = cursor.fetchall()
+    return rows
+
+
+def answer_vote_dislike(conn, answer_id):
+    cursor = conn.cursor()
+    cursor.execute("""UPDATE answer SET vote_number=vote_number-1 WHERE answer_id=%s;""", (answer_id,))
+    rows = cursor.fetchall()
+    return rows
