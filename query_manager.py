@@ -1,5 +1,13 @@
 from datetime import datetime
 from flask import request
+import psycopg2
+import config
+
+
+def connect_to_db():
+    conn = psycopg2.connect("dbname='{}' user='{}' host='localhost' password='{}'".format(config.db_name, config.user, config.password))
+    conn.autocommit = True
+    return conn
 
 
 def insert_into_question(conn):
