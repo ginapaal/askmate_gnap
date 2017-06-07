@@ -7,7 +7,8 @@ import sys
 
 def connect_to_db():
     try:
-        conn = psycopg2.connect("dbname='{}' user='{}' host='localhost' password='{}'".format(config.db_name, config.user, config.password))
+        conn = psycopg2.connect("dbname='{}' user='{}' host='localhost' password='{}'".format(
+            config.db_name, config.user, config.password))
         conn.autocommit = True
     except psycopg2.Error:
         print("""Connection with database failed. You made a typo in your database name, username or password.
@@ -30,7 +31,7 @@ def insert_into_question(conn):
 
 def read_from_db(conn):
     cursor = conn.cursor()
-    cursor.execute("""SELECT * FROM question;""", conn)
+    cursor.execute("""SELECT * FROM question ORDER BY id;""", conn)
     rows = cursor.fetchall()
     return rows
 
