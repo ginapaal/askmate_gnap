@@ -5,7 +5,8 @@ import config
 
 
 def connect_to_db():
-    conn = psycopg2.connect("dbname='{}' user='{}' host='localhost' password='{}'".format(config.db_name, config.user, config.password))
+    conn = psycopg2.connect("dbname='{}' user='{}' host='localhost' password='{}'".format(
+        config.db_name, config.user, config.password))
     conn.autocommit = True
     return conn
 
@@ -105,6 +106,7 @@ def create_registration_table(conn):
     except:
         pass
 
+
 def add_a_user(conn):
     cursor = conn.cursor()
     dt = datetime.now()
@@ -113,25 +115,47 @@ def add_a_user(conn):
                    (username, dt))
 
 
-
 def question_vote_like(conn, question_id):
     cursor = conn.cursor()
-    cursor.execute("""UPDATE question SET vote_number=vote_number+1 WHERE id=%s;""", (question_id))
-    return
+    vote_nr = cursor.execute("""SELECT vote_number FROM question WHERE id=%s;""", question_id)
+    vote_nr = cursor.fetchall()
+    if vote_nr is not None:
+        vote_nr = cursor.execute("""UPDATE question SET vote_number=vote_number+1 WHERE id=%s;""", (question_id))
+    else:
+        vote_nr = cursor.execute("""UPDATE question SET vote_number = 0 WHERE id=%s;""", question_id)
 
 
 def question_vote_dislike(conn, question_id):
     cursor = conn.cursor()
-    cursor.execute("""UPDATE question SET vote_number=vote_number-1 WHERE id=%s;""", (question_id))
+    vote_nr = cursor.execute("""SELECT vote_number FROM question WHERE id=%s;""", question_id)
+    vote_nr = cursor.fetchall()
+    if vote_nr is not None:
+        vote_nr = cursor.execute("""UPDATE question SET vote_number=vote_number-1 WHERE id=%s;""", (question_id))
+    else:
+        vote_nr = cursor.execute("""UPDATE question SET vote_number = 0 WHERE id=%s;""", question_id)
 
 
 def answer_vote_like(conn, question_id, answer_id):
     cursor = conn.cursor()
-    cursor.execute("""UPDATE answer SET vote_number=vote_number+1 WHERE (question_id, id)=(%s,%s);""",
-                   (question_id, answer_id))
+    vote_nr = cursor.execute(
+        """SELECT vote_number FROM answer WHERE (question_id,id)=(%s,%s);""", (question_id, answer_id))
+    vote_nr = cursor.fetchall()
+    if vote_nr is not None:
+        vote_nr = cursor.execute(
+            """UPDATE answer SET vote_number= vote_number+1 WHERE (question_id, id)=(%s,%s);""", (question_id, answer_id))
+    else:
+        vote_nr = cursor.execute(
+            """UPDATE answer SET vote_number=0 WHERE (question_id,id)=(%s,%s);""", (question_id, answer_id))
 
 
 def answer_vote_dislike(conn, question_id, answer_id):
     cursor = conn.cursor()
-    cursor.execute("""UPDATE answer SET vote_number=vote_number-1 WHERE (question_id, id)=(%s,%s);""",
-                   (question_id, answer_id))
+    vote_nr = cursor.execute(
+        """SELECT vote_number FROM answer WHERE (question_id,id)=(%s,%s);""", (question_id, answer_id))
+    vote_nr = cursor.fetchall()
+    if vote_nr is not None:
+        vote_nr = cursor.execute(
+            """UPDATE answer SET vote_number= vote_number-1 WHERE (question_id, id)=(%s,%s);""", (question_id, answer_id))
+    else:
+        vote_nr = cursor.execute(
+            """UPDATE answer SET vote_number=0 WHERE (question_id, id)=(%s,%s);""", (question_id, answer_id))

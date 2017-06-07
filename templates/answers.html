@@ -23,6 +23,9 @@
                 <tr>
                     <th>Answers</th>
                     <th id='comment_part'> Comments </th>
+                    <th> Like </th>
+                    <th> Dislike</th>
+                    <th> Total vote number </th>
                 </tr>
             </thead>
             <tbody class="table-hover">
@@ -44,6 +47,7 @@
                             <img src="http://freeflaticons.com/wp-content/uploads/2014/11/dont-14156173438kng4.png" width="30" height="30">
                         </a>
                     </td>
+                    <td> {{ item[2] }} </td>
                 </tr>
                 {% endfor %}
             </tbody>

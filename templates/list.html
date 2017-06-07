@@ -31,6 +31,7 @@
                     <th> Comments </th>
                     <th>Like</th>
                     <th>Dislike</th>
+                    <th> Total vote number </th>
                     <th></th>
                 </tr>
             </thead>
@@ -53,6 +54,9 @@
                             <img src="http://freeflaticons.com/wp-content/uploads/2014/11/dont-14156173438kng4.png" width="30" height="30">
                         </a>
                     </td>
+
+                    <td> {{ item[3] }}</td>
+
                     <td>
                         <form action="/question/{{ item[0] }}" method="POST">
                             <input type="submit" value="Answers">
