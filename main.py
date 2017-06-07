@@ -110,7 +110,7 @@ def question_voteup(question_id):
 
 @app.route('/question/<question_id>/vote/vote-down')
 def question_votedown(question_id):
-    query_manager.question_vote_dislike(guery_manager.connect_to_db(), question_id)
+    query_manager.question_vote_dislike(query_manager.connect_to_db(), question_id)
     return redirect("/")
 
 
