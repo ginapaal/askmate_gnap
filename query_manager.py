@@ -78,3 +78,42 @@ def show_db_item(conn, query, question_id):
     query = reader_by_id(conn, query, question_id)
     data = readable_query(query)
     return data
+
+
+def create_registration_table(conn):
+    cursor = conn.cursor()
+    cursor.execute("""CREATE TABLE IF NOT EXISTS Registration (
+   ID serial,
+   UserName varchar(255) NOT NULL,
+   registration_date TIMESTAMP,
+   PRIMARY KEY (ID));""")
+    try:
+        cursor.execute("""ALTER TABLE question
+       ADD  user_id  int ;""")
+        cursor.execute("""ALTER TABLE answer
+       ADD  user_id  int ;""")
+        cursor.execute("""ALTER TABLE comment
+       ADD  user_id  int ;""")
+    except:
+        pass
+
+# def create_registration_table(conn):
+#    cursor = conn.cursor()
+#    cursor.execute("""DROP TABLE Registration;""")
+#    try:
+#        cursor.execute("""ALTER TABLE question
+#        ADD  user_id  int ;""")
+#        cursor.execute("""ALTER TABLE answer
+#        ADD  user_id  int ;""")
+#        cursor.execute("""ALTER TABLE comment
+#        ADD  user_id  int ;""")
+#    except:
+#        pass
+
+
+def add_a_user(conn):
+    cursor = conn.cursor()
+    dt = datetime.now()
+    username = request.form["username"]
+    cursor.execute("""INSERT INTO registration (username, registration_date) VALUES(%s,%s);""",
+                   (username, dt))

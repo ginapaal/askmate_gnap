@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>AskMate - Registration</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='writingpages.css') }}" />
+</head>
+
+<body>
+    <h2> AskMate <br> Registration:</h2>
+    <form action="/registration" method="POST">
+        <div class='input_areas'>
+            <input label='username' id='styled_title' type="text" name="username" minlength="5" placeholder="Your Username here"></p>
+        </div>
+        <p><input id='styled_ask_button' type="submit" value="Registration"></p>
+    </form>
+</body>
+
+</html>
