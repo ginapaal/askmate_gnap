@@ -1,6 +1,5 @@
 from flask import Flask, render_template, request, redirect, url_for
 import query_manager
-from connect_manager import connect_to_db
 
 app = Flask(__name__)
 
@@ -105,25 +104,25 @@ def create_new_reg_table():
 
 @app.route('/question/<question_id>/vote/vote-up')
 def question_voteup(question_id):
-    query_manager.question_vote_like(connect_to_db(), question_id)
+    query_manager.question_vote_like(query_manager.connect_to_db(), question_id)
     return redirect("/")
 
 
 @app.route('/question/<question_id>/vote/vote-down')
 def question_votedown(question_id):
-    query_manager.question_vote_dislike(connect_to_db(), question_id)
+    query_manager.question_vote_dislike(guery_manager.connect_to_db(), question_id)
     return redirect("/")
 
 
 @app.route('/question/<question_id>/<answer_id>/vote/vote-up')
 def answer_voteup(question_id, answer_id):
-    query_manager.answer_vote_like(connect_to_db(), question_id, answer_id)
+    query_manager.answer_vote_like(query_manager.connect_to_db(), question_id, answer_id)
     return redirect(url_for("display_answer_list", question_id=question_id, answer_id=answer_id))
 
 
 @app.route('/question/<question_id>/<answer_id>/vote/vote-down')
 def answer_votedown(question_id, answer_id):
-    query_manager.answer_vote_dislike(connect_to_db(), question_id, answer_id)
+    query_manager.answer_vote_dislike(query_manager.connect_to_db(), question_id, answer_id)
     return redirect(url_for("display_answer_list", question_id=question_id, answer_id=answer_id))
 
 
