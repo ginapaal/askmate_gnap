@@ -111,6 +111,7 @@ def create_registration_table(conn):
     except:
         pass
 
+
 def add_a_user(conn):
     cursor = conn.cursor()
     dt = datetime.now()
@@ -119,16 +120,14 @@ def add_a_user(conn):
                    (username, dt))
 
 
-
 def question_vote_like(conn, question_id):
     cursor = conn.cursor()
-    cursor.execute("""UPDATE question SET vote_number=vote_number+1 WHERE id=%s;""", (question_id))
-    return
+    cursor.execute("""UPDATE question SET vote_number=vote_number+1 WHERE id=%s;""", (question_id,))
 
 
 def question_vote_dislike(conn, question_id):
     cursor = conn.cursor()
-    cursor.execute("""UPDATE question SET vote_number=vote_number-1 WHERE id=%s;""", (question_id))
+    cursor.execute("""UPDATE question SET vote_number=vote_number-1 WHERE id=%s;""", (question_id,))
 
 
 def answer_vote_like(conn, question_id, answer_id):

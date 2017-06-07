@@ -1,6 +1,6 @@
-db_name = ""
 global db_name
-user = ""
+db_name = ""
 global user
-password = ""
+user = ""
 global password
+password = ""
