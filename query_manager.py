@@ -130,3 +130,10 @@ def add_a_user(conn):
 def give_answer_datas_from_answer_table(question_id):
     rows_answer = reader_by_id(connect_to_db(), """SELECT * FROM answer WHERE question_id=%s;""", question_id)
     return rows_answer
+
+
+def give_question_title(question_id):
+    question = show_db_item(connect_to_db(), """SELECT title FROM question WHERE id=%s;""", question_id)
+    return question
+
+    
