@@ -83,7 +83,7 @@ def show_db_item(conn, query, question_id):
 def question_vote_like(conn, question_id):
     cursor = conn.cursor()
     cursor.execute("""UPDATE question SET vote_number=vote_number+1 WHERE id=%s;""", (question_id))
-    return question_id
+    return
 
 
 def question_vote_dislike(conn, question_id):
@@ -91,11 +91,11 @@ def question_vote_dislike(conn, question_id):
     cursor.execute("""UPDATE question SET vote_number=vote_number-1 WHERE id=%s;""", (question_id))
 
 
-def answer_vote_like(conn, answer_id):
+def answer_vote_like(conn, question_id):
     cursor = conn.cursor()
-    cursor.execute("""UPDATE answer SET vote_number=vote_number+1 WHERE id=%s;""", (answer_id))
+    cursor.execute("""UPDATE answer SET vote_number=vote_number+1 WHERE question_id=%s;""", (question_id))
 
 
-def answer_vote_dislike(conn, answer_id):
+def answer_vote_dislike(conn, question_id):
     cursor = conn.cursor()
-    cursor.execute("""UPDATE answer SET vote_number=vote_number-1 WHERE id=%s;""", (answer_id))
+    cursor.execute("""UPDATE answer SET vote_number=vote_number-1 WHERE question_id=%s;""", (question_id))

@@ -88,12 +88,28 @@ def add_new_a_comment(answer_id):
         return render_template("give_answer_comment.html", answer_id=answer_id, answer=answer)
 
 
-@app.route('/question/<question_id>/vote/vote-up', methods=["POST", "GET"])
+@app.route('/question/<question_id>/vote/vote-up')
 def question_voteup(question_id):
+    query_manager.question_vote_like(connect_to_db(), question_id)
+    return redirect("/")
 
-    if request.method == "POST":
-        query_manager.question_vote_like(connect_to_db(), question_id)
-    return redirect("/question/" + question_id + "/vote/vote-up", question_id=question_id)
+
+@app.route('/question/<question_id>/vote/vote-down')
+def question_votedown(question_id):
+    query_manager.question_vote_dislike(connect_to_db(), question_id)
+    return redirect("/")
+
+
+@app.route('/question/<question_id>/vote/vote-up')
+def answer_voteup(question_id):
+    query_manager.answer_vote_like(connect_to_db, question_id)
+    return redirect(url_for("display_answer_list", question_id=question_id))
+
+
+@app.route('/question/<question_id>/vote/vote-down')
+def answer_votedown(question_id):
+    query_manager.answer_vote_dislike(connect_to_db(), question_id)
+    return redirect(url_for("display_answer_list", question_id=question_id))
 
 
 if __name__ == "__main__":
