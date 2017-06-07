@@ -135,3 +135,23 @@ def answer_vote_dislike(conn, question_id, answer_id):
     cursor = conn.cursor()
     cursor.execute("""UPDATE answer SET vote_number=vote_number-1 WHERE (question_id, id)=(%s,%s);""",
                    (question_id, answer_id))
+
+
+def give_answer_datas_from_answer_table(question_id):
+    rows_answer = reader_by_id(connect_to_db(), """SELECT * FROM answer WHERE question_id=%s;""", question_id)
+    return rows_answer
+
+
+def give_question_title(question_id):
+    question = show_db_item(connect_to_db(), """SELECT title FROM question WHERE id=%s;""", question_id)
+    return question
+
+
+def give_question_body(question_id):
+    question_body = show_db_item(connect_to_db(), """SELECT message FROM question WHERE id=%s;""", question_id)
+    return question_body
+
+
+def give_answer_comment_list(answer_id):
+    answer = show_db_item(connect_to_db(), """SELECT message FROM answer WHERE id=%s;""", answer_id)
+    return answer
