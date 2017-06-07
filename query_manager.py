@@ -175,3 +175,9 @@ def give_question_body(question_id):
 def give_answer_comment_list(answer_id):
     answer = show_db_item(connect_to_db(), """SELECT message FROM answer WHERE id=%s;""", answer_id)
     return answer
+
+
+def list_users():
+    rows_users = reader_by_id(connect_to_db(), """SELECT UserName, registration_date
+                                                    FROM Registration""")
+    return rows_users

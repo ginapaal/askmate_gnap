@@ -116,5 +116,11 @@ def answer_votedown(question_id, answer_id):
     return redirect(url_for("display_answer_list", question_id=question_id, answer_id=answer_id))
 
 
+@app.route('/users-list', methods=['GET', 'POST'])
+def users():
+    rows_users = query_manager.list_users()
+    return rows_users
+
+
 if __name__ == "__main__":
     app.run(debug=True)
