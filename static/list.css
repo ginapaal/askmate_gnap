@@ -63,7 +63,7 @@ width: 100%;
   border-radius:3px;
   border-collapse: collapse;
   margin: auto;
-  max-width: 500px;
+  max-width: 900px;
   padding:5px;
   width: 100%;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
@@ -83,6 +83,7 @@ th {
   text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
   vertical-align: middle;
 }
+
 
 tr {
   border-top: 1px solid #C1C3D1;

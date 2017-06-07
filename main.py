@@ -80,7 +80,6 @@ def display_a_comment_list(answer_id):
 def add_new_a_comment(answer_id):
     answer = query_manager.show_db_item(
         query_manager.connect_to_db(), """SELECT message FROM answer WHERE id=%s;""", answer_id)
-
     if request.method == "POST":
         query_manager.add_a_comment(query_manager.connect_to_db(), answer_id)
         return redirect("/answer/" + answer_id + "/comments")
@@ -96,6 +95,30 @@ def create_new_reg_table():
         return redirect("/")
     else:
         return render_template("registration_display.html")
+
+
+@app.route('/question/<question_id>/vote/vote-up')
+def question_voteup(question_id):
+    query_manager.question_vote_like(connect_to_db(), question_id)
+    return redirect("/")
+
+
+@app.route('/question/<question_id>/vote/vote-down')
+def question_votedown(question_id):
+    query_manager.question_vote_dislike(connect_to_db(), question_id)
+    return redirect("/")
+
+
+@app.route('/question/<question_id>/<answer_id>/vote/vote-up')
+def answer_voteup(question_id, answer_id):
+    query_manager.answer_vote_like(connect_to_db(), question_id, answer_id)
+    return redirect(url_for("display_answer_list", question_id=question_id, answer_id=answer_id))
+
+
+@app.route('/question/<question_id>/<answer_id>/vote/vote-down')
+def answer_votedown(question_id, answer_id):
+    query_manager.answer_vote_dislike(connect_to_db(), question_id, answer_id)
+    return redirect(url_for("display_answer_list", question_id=question_id, answer_id=answer_id))
 
 
 if __name__ == "__main__":
