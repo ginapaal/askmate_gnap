@@ -16,6 +16,7 @@
     </div>
     <form action="/answer/{{ answer_id }}/new-comment" method="POST">
         <div class='input_areas'>
+            <input label='Username Title' id='styled_title' type="text" name="username" minlength="5" placeholder="Username"></p>
             <textarea name="new_comment" id="styled_textarea" placeholder="Write your comments here"></textarea>
             <input type="submit" value="Add My Comment" id="styled_answer_button">
     </form>

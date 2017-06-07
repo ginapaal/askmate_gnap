@@ -17,6 +17,7 @@
     </div>
     <form action="/question/{{ question_id }}/new-answer" method="POST">
         <div class='input_areas'>
+            <input label='Username Title' id='styled_title' type="text" name="username" minlength="5" placeholder="Username"></p>
             <textarea name="new_answer" id="styled_textarea" placeholder="Write your answer here" minlength=10></textarea>
             <input type="submit" value="Send My Answer" id="styled_answer_button">
     </form>
