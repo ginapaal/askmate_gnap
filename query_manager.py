@@ -16,6 +16,8 @@ def insert_into_question(conn):
     dt = datetime.now()
     message = request.form["new_question"]
     title = request.form["title"]
+    name = request.form["username"]
+    user_id = cursor.execute("""SELECT """)
     cursor.execute("""INSERT INTO question (submission_time, title, message)
      VALUES (%s,%s,%s);""", (dt, title, message))
 
@@ -91,18 +93,19 @@ def show_db_item(conn, query, question_id):
 
 def create_registration_table(conn):
     cursor = conn.cursor()
-    cursor.execute("""CREATE TABLE IF NOT EXISTS Registration (
-   ID serial,
-   UserName varchar(255) NOT NULL,
-   registration_date TIMESTAMP,
-   PRIMARY KEY (ID));""")
+    cursor.execute("""CREATE TABLE IF NOT EXISTS registration (
+  ID serial,
+  UserName varchar(255) NOT NULL,
+  registration_date TIMESTAMP,
+  user_reputation int DEFAULT 0,
+  PRIMARY KEY (ID));""")
     try:
         cursor.execute("""ALTER TABLE question
-       ADD  user_id  int ;""")
+      ADD  user_id  int ;""")
         cursor.execute("""ALTER TABLE answer
-       ADD  user_id  int ;""")
+      ADD  user_id  int ;""")
         cursor.execute("""ALTER TABLE comment
-       ADD  user_id  int ;""")
+      ADD  user_id  int ;""")
     except:
         pass
 
@@ -111,7 +114,7 @@ def add_a_user(conn):
     cursor = conn.cursor()
     dt = datetime.now()
     username = request.form["username"]
-    cursor.execute("""INSERT INTO registration (username, registration_date) VALUES(%s,%s);""",
+    cursor.execute("""INSERT INTO user (username, registration_date) VALUES(%s,%s);""",
                    (username, dt))
 
 
