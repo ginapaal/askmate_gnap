@@ -5,7 +5,8 @@ import config
 
 
 def connect_to_db():
-    conn = psycopg2.connect("dbname='{}' user='{}' host='localhost' password='{}'".format(config.db_name, config.user, config.password))
+    conn = psycopg2.connect("dbname='{}' user='{}' host='localhost' password='{}'".format(
+        config.db_name, config.user, config.password))
     conn.autocommit = True
     return conn
 
@@ -105,13 +106,13 @@ def create_registration_table(conn):
     except:
         pass
 
+
 def add_a_user(conn):
     cursor = conn.cursor()
     dt = datetime.now()
     username = request.form["username"]
     cursor.execute("""INSERT INTO registration (username, registration_date) VALUES(%s,%s);""",
                    (username, dt))
-
 
 
 def question_vote_like(conn, question_id):
