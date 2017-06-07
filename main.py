@@ -66,7 +66,7 @@ def add_new_q_comment(question_id):
 @app.route("/answer/<answer_id>/comments", methods=['POST', 'GET'])
 def display_a_comment_list(answer_id):
     rows_comments = query_manager.read_from_a_comments(query_manager.connect_to_db(), answer_id)
-    answer = query_manager.show_db_item(query_manager.connect_to_db(), """SELECT message FROM answer WHERE id=%s;""", answer_id)
+    answer = query_manager.give_answer_comment_list(answer_id)
     return render_template("answer_comment.html", comment=rows_comments, answer_id=answer_id,
                            answer=answer)
 

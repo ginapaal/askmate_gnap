@@ -140,3 +140,8 @@ def give_question_title(question_id):
 def give_question_body(question_id):
     question_body = show_db_item(connect_to_db(), """SELECT message FROM question WHERE id=%s;""", question_id)
     return question_body
+
+
+def give_answer_comment_list(answer_id):
+    answer = show_db_item(connect_to_db(), """SELECT message FROM answer WHERE id=%s;""", answer_id)
+    return answer
