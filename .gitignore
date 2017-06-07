@@ -108,6 +108,6 @@ ENV/
 !.vscode/launch.json
 !.vscode/extensions.json
 
-# ignore the file literally named connect_manager.py
-connect_manager.py
+# ignore the file literally named config.py
+config.py
 # End of https://www.gitignore.io/api/python,visualstudiocode

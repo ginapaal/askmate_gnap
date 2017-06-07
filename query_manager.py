@@ -1,5 +1,13 @@
 from datetime import datetime
 from flask import request
+import psycopg2
+import config
+
+
+def connect_to_db():
+    conn = psycopg2.connect("dbname='{}' user='{}' host='localhost' password='{}'".format(config.db_name, config.user, config.password))
+    conn.autocommit = True
+    return conn
 
 
 def insert_into_question(conn):
@@ -20,7 +28,7 @@ def read_from_db(conn):
 
 def reader_by_id(conn, query, question_id):
     cursor = conn.cursor()
-    cursor.execute(query, (question_id))
+    cursor.execute(query, (question_id,))
     rows = cursor.fetchall()
     return rows
 
@@ -35,14 +43,14 @@ def insert_into_answer(conn, question_id):
 
 def read_from_q_comments(conn, question_id):
     cursor = conn.cursor()
-    cursor.execute("""SELECT * FROM comment WHERE question_id=%s;""", (question_id))
+    cursor.execute("""SELECT * FROM comment WHERE question_id=%s;""", (question_id,))
     rows = cursor.fetchall()
     return rows
 
 
 def read_from_a_comments(conn, answer_id):
     cursor = conn.cursor()
-    cursor.execute("""SELECT * FROM comment WHERE answer_id=%s;""", (answer_id))
+    cursor.execute("""SELECT * FROM comment WHERE answer_id=%s;""", (answer_id,))
     rows = cursor.fetchall()
     return rows
 
