@@ -124,26 +124,30 @@ def add_a_user(conn):
                    (username, dt))
 
 
-def question_vote_like(conn, question_id):
+def question_vote_like(conn, question_id, user_id):
     cursor = conn.cursor()
     cursor.execute("""UPDATE question SET vote_number=vote_number+1 WHERE id=%s;""", (question_id,))
+    cursor.execute("""UPDATE registration SET user_reputation=user_reputation+5 WHERE id=%s;""", (user_id,))
 
 
-def question_vote_dislike(conn, question_id):
+def question_vote_dislike(conn, question_id, user_id):
     cursor = conn.cursor()
     cursor.execute("""UPDATE question SET vote_number=vote_number-1 WHERE id=%s;""", (question_id,))
+    cursor.execute("""UPDATE registration SET user_reputation=user_reputation-2 WHERE id=%s;""", (user_id,))
 
 
-def answer_vote_like(conn, question_id, answer_id):
+def answer_vote_like(conn, question_id, answer_id, user_id):
     cursor = conn.cursor()
     cursor.execute("""UPDATE answer SET vote_number=vote_number+1 WHERE (question_id, id)=(%s,%s);""",
                    (question_id, answer_id))
+    cursor.execute("""UPDATE registration SET user_reputation=user_reputation+10 WHERE id=%s;""", (user_id,))
 
 
-def answer_vote_dislike(conn, question_id, answer_id):
+def answer_vote_dislike(conn, question_id, answer_id, user_id):
     cursor = conn.cursor()
     cursor.execute("""UPDATE answer SET vote_number=vote_number-1 WHERE (question_id, id)=(%s,%s);""",
                    (question_id, answer_id))
+    cursor.execute("""UPDATE registration SET user_reputation=user_reputation-2 WHERE id=%s;""", (user_id,))
 
 
 def give_answer_datas_from_answer_table(question_id):

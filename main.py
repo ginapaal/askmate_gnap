@@ -92,27 +92,27 @@ def create_new_reg_table():
         return render_template("registration_display.html")
 
 
-@app.route('/question/<question_id>/vote/vote-up')
-def question_voteup(question_id):
-    query_manager.question_vote_like(query_manager.connect_to_db(), question_id)
+@app.route('/question/<question_id>/<user_id>/vote/vote-up')
+def question_voteup(question_id, user_id):
+    query_manager.question_vote_like(query_manager.connect_to_db(), question_id, user_id)
     return redirect("/")
 
 
-@app.route('/question/<question_id>/vote/vote-down')
-def question_votedown(question_id):
-    query_manager.question_vote_dislike(query_manager.connect_to_db(), question_id)
+@app.route('/question/<question_id>/<user_id>/vote/vote-down')
+def question_votedown(question_id, user_id):
+    query_manager.question_vote_dislike(query_manager.connect_to_db(), question_id, user_id)
     return redirect("/")
 
 
-@app.route('/question/<question_id>/<answer_id>/vote/vote-up')
-def answer_voteup(question_id, answer_id):
-    query_manager.answer_vote_like(query_manager.connect_to_db(), question_id, answer_id)
+@app.route('/question/<question_id>/<answer_id>/<user_id>/vote/vote-up')
+def answer_voteup(question_id, answer_id, user_id):
+    query_manager.answer_vote_like(query_manager.connect_to_db(), question_id, answer_id, user_id)
     return redirect(url_for("display_answer_list", question_id=question_id, answer_id=answer_id))
 
 
-@app.route('/question/<question_id>/<answer_id>/vote/vote-down')
-def answer_votedown(question_id, answer_id):
-    query_manager.answer_vote_dislike(query_manager.connect_to_db(), question_id, answer_id)
+@app.route('/question/<question_id>/<answer_id>/<user_id>/vote/vote-down')
+def answer_votedown(question_id, answer_id, user_id):
+    query_manager.answer_vote_dislike(query_manager.connect_to_db(), question_id, answer_id, user_id)
     return redirect(url_for("display_answer_list", question_id=question_id, answer_id=answer_id))
 
 
