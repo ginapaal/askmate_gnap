@@ -88,5 +88,15 @@ def add_new_a_comment(answer_id):
         return render_template("give_answer_comment.html", answer_id=answer_id, answer=answer)
 
 
+@app.route('/registration', methods=["POST", "GET"])
+def create_new_reg_table():
+    query_manager.create_registration_table(connect_to_db())
+    if request.method == 'POST':
+        query_manager.add_a_user(connect_to_db())
+        return redirect("/")
+    else:
+        return render_template("registration_display.html")
+
+
 if __name__ == "__main__":
     app.run(debug=True)
