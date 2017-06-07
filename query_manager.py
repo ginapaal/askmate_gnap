@@ -125,3 +125,8 @@ def add_a_user(conn):
     username = request.form["username"]
     cursor.execute("""INSERT INTO registration (username, registration_date) VALUES(%s,%s);""",
                    (username, dt))
+
+
+def give_answer_datas_from_answer_table(question_id):
+    rows_answer = reader_by_id(connect_to_db(), """SELECT * FROM answer WHERE question_id=%s;""", question_id)
+    return rows_answer

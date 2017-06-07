@@ -22,8 +22,7 @@ def new_question():
 
 @app.route('/question/<question_id>', methods=['GET', 'POST'])
 def display_answer_list(question_id):
-    rows_answer = query_manager.reader_by_id(
-        query_manager.connect_to_db(), """SELECT * FROM answer WHERE question_id=%s;""", question_id)
+    rows_answer = query_manager.give_answer_datas_from_answer_table(question_id)
     question = query_manager.show_db_item(query_manager.connect_to_db(), """SELECT title FROM question WHERE id=%s;""", question_id)
     question_body = query_manager.show_db_item(
         query_manager.connect_to_db(), """SELECT message FROM question WHERE id=%s;""", question_id)
