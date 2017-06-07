@@ -105,20 +105,6 @@ def create_registration_table(conn):
     except:
         pass
 
-# def create_registration_table(conn):
-#    cursor = conn.cursor()
-#    cursor.execute("""DROP TABLE Registration;""")
-#    try:
-#        cursor.execute("""ALTER TABLE question
-#        ADD  user_id  int ;""")
-#        cursor.execute("""ALTER TABLE answer
-#        ADD  user_id  int ;""")
-#        cursor.execute("""ALTER TABLE comment
-#        ADD  user_id  int ;""")
-#    except:
-#        pass
-
-
 def add_a_user(conn):
     cursor = conn.cursor()
     dt = datetime.now()
@@ -145,3 +131,27 @@ def give_question_body(question_id):
 def give_answer_comment_list(answer_id):
     answer = show_db_item(connect_to_db(), """SELECT message FROM answer WHERE id=%s;""", answer_id)
     return answer
+
+
+
+def question_vote_like(conn, question_id):
+    cursor = conn.cursor()
+    cursor.execute("""UPDATE question SET vote_number=vote_number+1 WHERE id=%s;""", (question_id))
+    return
+
+
+def question_vote_dislike(conn, question_id):
+    cursor = conn.cursor()
+    cursor.execute("""UPDATE question SET vote_number=vote_number-1 WHERE id=%s;""", (question_id))
+
+
+def answer_vote_like(conn, question_id, answer_id):
+    cursor = conn.cursor()
+    cursor.execute("""UPDATE answer SET vote_number=vote_number+1 WHERE (question_id, id)=(%s,%s);""",
+                   (question_id, answer_id))
+
+
+def answer_vote_dislike(conn, question_id, answer_id):
+    cursor = conn.cursor()
+    cursor.execute("""UPDATE answer SET vote_number=vote_number-1 WHERE (question_id, id)=(%s,%s);""",
+                   (question_id, answer_id))
