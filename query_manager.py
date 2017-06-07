@@ -21,8 +21,11 @@ def insert_into_question(conn):
     dt = datetime.now()
     message = request.form["new_question"]
     title = request.form["title"]
-    cursor.execute("""INSERT INTO question (submission_time, title, message)
-     VALUES (%s,%s,%s);""", (dt, title, message))
+    name = request.form["username"]
+    cursor.execute("""SELECT id FROM registration WHERE username = %s;""", (name,))
+    user_id = cursor.fetchall()[0][0]
+    cursor.execute("""INSERT INTO question (submission_time, title, message, user_id)
+     VALUES (%s,%s,%s,%s);""", (dt, title, message, user_id))
 
 
 def read_from_db(conn):
@@ -43,8 +46,11 @@ def insert_into_answer(conn, question_id):
     cursor = conn.cursor()
     dt = datetime.now()
     message = request.form["new_answer"]
-    cursor.execute("""INSERT INTO answer (submission_time, question_id, message)
-     VALUES (%s,%s,%s);""", (dt, question_id, message))
+    name = request.form["username"]
+    cursor.execute("""SELECT id FROM registration WHERE username = %s;""", (name,))
+    user_id = cursor.fetchall()[0][0]
+    cursor.execute("""INSERT INTO answer (submission_time, question_id, message, user_id)
+     VALUES (%s,%s,%s,%s);""", (dt, question_id, message, user_id))
 
 
 def read_from_q_comments(conn, question_id):
@@ -65,16 +71,22 @@ def add_q_comment(conn, question_id):
     cursor = conn.cursor()
     dt = datetime.now()
     message = request.form["new_comment"]
-    cursor.execute("""INSERT INTO comment (question_id, message, submission_time) VALUES(%s,%s,%s);""",
-                   (question_id, message, dt))
+    name = request.form["username"]
+    cursor.execute("""SELECT id FROM registration WHERE username = %s;""", (name,))
+    user_id = cursor.fetchall()[0][0]
+    cursor.execute("""INSERT INTO comment (question_id, message, submission_time, user_id) VALUES(%s,%s,%s,%s);""",
+                   (question_id, message, dt, user_id))
 
 
 def add_a_comment(conn, answer_id):
     cursor = conn.cursor()
     dt = datetime.now()
     message = request.form["new_comment"]
-    cursor.execute("""INSERT INTO comment (answer_id, message, submission_time) VALUES(%s,%s,%s);""",
-                   (answer_id, message, dt))
+    name = request.form["username"]
+    cursor.execute("""SELECT id FROM registration WHERE username = %s;""", (name,))
+    user_id = cursor.fetchall()[0][0]
+    cursor.execute("""INSERT INTO comment (answer_id, message, submission_time, user_id) VALUES(%s,%s,%s,%s);""",
+                   (answer_id, message, dt, user_id))
 
 
 def readable_query(query):
@@ -96,20 +108,12 @@ def show_db_item(conn, query, question_id):
 
 def create_registration_table(conn):
     cursor = conn.cursor()
-    cursor.execute("""CREATE TABLE IF NOT EXISTS Registration (
-   ID serial,
-   UserName varchar(255) NOT NULL,
-   registration_date TIMESTAMP,
-   PRIMARY KEY (ID));""")
-    try:
-        cursor.execute("""ALTER TABLE question
-       ADD  user_id  int ;""")
-        cursor.execute("""ALTER TABLE answer
-       ADD  user_id  int ;""")
-        cursor.execute("""ALTER TABLE comment
-       ADD  user_id  int ;""")
-    except:
-        pass
+    cursor.execute("""CREATE TABLE IF NOT EXISTS registration (
+  ID serial,
+  UserName varchar(255) NOT NULL,
+  registration_date TIMESTAMP,
+  user_reputation int DEFAULT 0,
+  PRIMARY KEY (ID));""")
 
 
 def add_a_user(conn):
