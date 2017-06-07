@@ -2,11 +2,17 @@ from datetime import datetime
 from flask import request
 import psycopg2
 import config
+import sys
 
 
 def connect_to_db():
-    conn = psycopg2.connect("dbname='{}' user='{}' host='localhost' password='{}'".format(config.db_name, config.user, config.password))
-    conn.autocommit = True
+    try:
+        conn = psycopg2.connect("dbname='{}' user='{}' host='localhost' password='{}'".format(config.db_name, config.user, config.password))
+        conn.autocommit = True
+    except psycopg2.Error:
+        print("""Connection with database failed. You made a typo in your database name, username or password.
+            You should check your config.py""")
+        sys.exit(0)
     return conn
 
 
