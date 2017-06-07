@@ -24,17 +24,15 @@ def new_question():
 def display_answer_list(question_id):
     rows_answer = query_manager.give_answer_datas_from_answer_table(question_id)
     question = query_manager.give_question_title(question_id)
-    question_body = query_manager.show_db_item(
-        query_manager.connect_to_db(), """SELECT message FROM question WHERE id=%s;""", question_id)
+    question_body = query_manager.give_question_body(question_id)
     return render_template('answers.html', answer=rows_answer, question_id=question_id, question=question,
                            question_body=question_body)
 
 
 @app.route("/question/<question_id>/new-answer", methods=["GET", "POST"])
 def new_answer(question_id):
-    question = query_manager.show_db_item(query_manager.connect_to_db(), """SELECT title FROM question WHERE id=%s;""", question_id)
-    question_body = query_manager.show_db_item(
-        query_manager.connect_to_db(), """SELECT message FROM question WHERE id=%s;""", question_id)
+    question = query_manager.give_question_title(question_id)
+    question_body = query_manager.give_question_body(question_id)
     if request.method == "POST":
 
         query_manager.insert_into_answer(query_manager.connect_to_db(), question_id)
@@ -47,18 +45,16 @@ def new_answer(question_id):
 @app.route("/question/<question_id>/comments", methods=['POST', 'GET'])
 def display_q_comment_list(question_id):
     rows_comments = query_manager.read_from_q_comments(query_manager.connect_to_db(), question_id)
-    question = query_manager.show_db_item(query_manager.connect_to_db(), """SELECT title FROM question WHERE id=%s;""", question_id)
-    question_body = query_manager.show_db_item(
-        query_manager.connect_to_db(), """SELECT message FROM question WHERE id=%s;""", question_id)
+    question = query_manager.give_question_title(question_id)
+    question_body = query_manager.give_question_body(question_id)
     return render_template("question_comment.html", comment=rows_comments, question_id=question_id,
                            question=question, question_body=question_body)
 
 
 @app.route("/question/<question_id>/new-comment", methods=['POST', 'GET'])
 def add_new_q_comment(question_id):
-    question = query_manager.show_db_item(query_manager.connect_to_db(), """SELECT title FROM question WHERE id=%s;""", question_id)
-    question_body = query_manager.show_db_item(
-        query_manager.connect_to_db(), """SELECT message FROM question WHERE id=%s;""", question_id)
+    question = query_manager.give_question_title(question_id)
+    question_body = query_manager.give_question_body(question_id)
 
     if request.method == "POST":
         query_manager.add_q_comment(query_manager.connect_to_db(), question_id)

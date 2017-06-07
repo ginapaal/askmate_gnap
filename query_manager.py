@@ -136,4 +136,7 @@ def give_question_title(question_id):
     question = show_db_item(connect_to_db(), """SELECT title FROM question WHERE id=%s;""", question_id)
     return question
 
-    
+
+def give_question_body(question_id):
+    question_body = show_db_item(connect_to_db(), """SELECT message FROM question WHERE id=%s;""", question_id)
+    return question_body
