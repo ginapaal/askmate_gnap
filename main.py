@@ -81,12 +81,19 @@ def display_a_comment_list(answer_id):
 def add_new_a_comment(answer_id):
     answer = query_manager.show_db_item(
         connect_to_db(), """SELECT message FROM answer WHERE id=%s;""", answer_id)
-
     if request.method == "POST":
         query_manager.add_a_comment(connect_to_db(), answer_id)
         return redirect("/answer/" + answer_id + "/comments")
     else:
         return render_template("give_answer_comment.html", answer_id=answer_id, answer=answer)
+
+
+@app.route('/question/<question_id>/vote/vote-up', methods=["POST", "GET"])
+def question_voteup(question_id):
+
+    if request.method == "POST":
+        query_manager.question_vote_like(connect_to_db(), question_id)
+    return redirect("/question/" + question_id + "/vote/vote-up", question_id=question_id)
 
 
 if __name__ == "__main__":
