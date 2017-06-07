@@ -73,8 +73,7 @@ def display_a_comment_list(answer_id):
 
 @app.route('/answer/<answer_id>/new-comment', methods=["POST", "GET"])
 def add_new_a_comment(answer_id):
-    answer = query_manager.show_db_item(
-        query_manager.connect_to_db(), """SELECT message FROM answer WHERE id=%s;""", answer_id)
+    answer = query_manager.give_answer_comment_list(answer_id)
 
     if request.method == "POST":
         query_manager.add_a_comment(query_manager.connect_to_db(), answer_id)
