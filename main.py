@@ -90,9 +90,9 @@ def add_new_a_comment(answer_id):
 
 @app.route('/registration', methods=["POST", "GET"])
 def create_new_reg_table():
-    query_manager.create_registration_table(connect_to_db())
+    query_manager.create_registration_table(query_manager.connect_to_db())
     if request.method == 'POST':
-        query_manager.add_a_user(connect_to_db())
+        query_manager.add_a_user(query_manager.connect_to_db())
         return redirect("/")
     else:
         return render_template("registration_display.html")
