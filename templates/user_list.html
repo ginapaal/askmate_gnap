@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+
+<html>
+
+    <head>
+        <title> Users </title>
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='list.css') }}">
+    </head>
+
+    <body>
+        <div class="table-fill">
+            <table>
+                <thead class="table-head" id="table-head">
+                    <tr>
+                        <th>Users name</th>
+                        <th>Registered on</th>
+                    </tr>
+                </thead>
+                <tbody class="table-hover">
+                    {% for item in table %}
+                        <tr>
+                            <a href="/user/<user_id>">
+                                <td> {{ item [0] }} </td>
+                                <td> {{ item [1] }} </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+    </body>
+</html>

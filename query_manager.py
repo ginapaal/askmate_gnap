@@ -94,6 +94,7 @@ def create_registration_table(conn):
    ID serial,
    UserName varchar(255) NOT NULL,
    registration_date TIMESTAMP,
+   user_reputation int DEFAULT 0,
    PRIMARY KEY (ID));""")
     try:
         cursor.execute("""ALTER TABLE question
@@ -177,7 +178,8 @@ def give_answer_comment_list(answer_id):
     return answer
 
 
-def list_users():
-    rows_users = reader_by_id(connect_to_db(), """SELECT UserName, registration_date
-                                                    FROM Registration""")
+def list_users(conn):
+    cursor = conn.cursor()
+    cursor.execute("""SELECT username, registration_date, id FROM registration;""")
+    rows_users = cursor.fetchall()
     return rows_users

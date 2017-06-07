@@ -118,8 +118,8 @@ def answer_votedown(question_id, answer_id):
 
 @app.route('/users-list', methods=['GET', 'POST'])
 def users():
-    rows_users = query_manager.list_users()
-    return rows_users
+    rows_users = query_manager.list_users(query_manager.connect_to_db())
+    return render_template("user_list.html", table=rows_users)
 
 
 if __name__ == "__main__":
