@@ -84,8 +84,11 @@ def add_new_a_comment(answer_id):
     answer = query_manager.give_answer_comment_list(answer_id)
 
     if request.method == "POST":
-        query_manager.add_a_comment(query_manager.connect_to_db(), answer_id)
-        return redirect("/answer/" + answer_id + "/comments")
+        try:
+            query_manager.add_a_comment(query_manager.connect_to_db(), answer_id)
+            return redirect("/answer/" + answer_id + "/comments")
+        except IndexError:
+            return render_template("need_registrate.html")
     else:
         return render_template("give_answer_comment.html", answer_id=answer_id, answer=answer)
 
