@@ -225,11 +225,7 @@ def delete_answer_row(conn, answer_id):
     cursor = conn.cursor()
     cursor.execute("""SELECT question_id from answer WHERE id=%s;""", (answer_id,))
     question_id = cursor.fetchone()[0]
-    try:
-        cursor.execute("""DELETE FROM answer WHERE id=%s;""", (answer_id,))
-    except psycopg2.Error:
-        cursor.execute("""DELETE FROM comment WHERE answer_id=%s;""", (answer_id,))
-        cursor.execute("""DELETE FROM answer WHERE id=%s;""", (answer_id,))
+    cursor.execute("""DELETE FROM answer WHERE id=%s;""", (answer_id,))
     return question_id
 
 
@@ -237,6 +233,7 @@ def delete_answer_comment(conn, comment_id):
     cursor = conn.cursor()
     print(comment_id)
     cursor.execute("""DELETE FROM comment WHERE id=%s;""", (comment_id,))
+
 
 def display_userpage_username_reputation(conn, user_id):
     cursor = conn.cursor()
