@@ -134,6 +134,12 @@ def delete_question_comment(comment_id, question_id):
     return redirect(url_for("display_q_comment_list", question_id=question_id))
 
 
+@app.route('/question/<question_id>/delete')
+def delete_question(question_id):
+    query_manager.delete_question(query_manager.connect_to_db(), question_id)
+    return redirect(url_for("display_list"))
+
+
 @app.route('/answer/<answer_id>/delete')
 def delete_answer(answer_id):
     question_id = query_manager.delete_answer_row(query_manager.connect_to_db(), answer_id)

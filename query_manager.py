@@ -215,6 +215,16 @@ def delete_question_comment(conn, comment_id):
     cursor.execute("""DELETE FROM comment WHERE id=%s;""", (comment_id,))
 
 
+def delete_question(conn, question_id):
+    cursor = conn.cursor()
+    try:
+        cursor.execute("""DELETE FROM question WHERE id=%s;""", (question_id,))
+    except psycopg2.Error:
+        cursor.execute("""DELETE FROM comment WHERE question_id=%s;""", (question_id,))
+        cursor.execute("""DELETE FROM answer WHERE question_id=%s;""", (question_id,))
+        cursor.execute("""DELETE FROM question WHERE id=%s;""", (question_id,))
+
+
 def delete_answer_row(conn, answer_id):
     cursor = conn.cursor()
     cursor.execute("""SELECT question_id from answer WHERE id=%s;""", (answer_id,))
