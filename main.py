@@ -128,5 +128,11 @@ def accept_answer(question_id, answer_id, user_id):
     return redirect("/question/" + question_id)
 
 
+@app.route('/question/<question_id>/comments/<comment_id>/delete')
+def delete_question_comment(comment_id, question_id):
+    query_manager.delete_question_comment(query_manager.connect_to_db(), comment_id)
+    return redirect(url_for("display_q_comment_list", question_id=question_id))
+
+
 if __name__ == "__main__":
     app.run(debug=True)
