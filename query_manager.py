@@ -172,26 +172,6 @@ def answer_vote_dislike(conn, question_id, answer_id, user_id):
     cursor.execute("""UPDATE users SET user_reputation=user_reputation-2 WHERE id=%s;""", (user_id,))
 
 
-def give_answer_datas_from_answer_table(question_id):
-    rows_answer = reader_by_id(connect_to_db(), """SELECT * FROM answer WHERE question_id=%s;""", question_id)
-    return rows_answer
-
-
-def give_question_title(question_id):
-    question = show_db_item(connect_to_db(), """SELECT title FROM question WHERE id=%s;""", question_id)
-    return question
-
-
-def give_question_body(question_id):
-    question_body = show_db_item(connect_to_db(), """SELECT message FROM question WHERE id=%s;""", question_id)
-    return question_body
-
-
-def give_answer_comment_list(answer_id):
-    answer = show_db_item(connect_to_db(), """SELECT message FROM answer WHERE id=%s;""", answer_id)
-    return answer
-
-
 def list_users(conn):
     cursor = conn.cursor()
     cursor.execute("""SELECT username, registration_date, id FROM users;""")
