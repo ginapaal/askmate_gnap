@@ -23,7 +23,7 @@ def insert_into_question(conn):
     message = request.form["new_question"]
     title = request.form["title"]
     name = request.form["username"]
-    cursor.execute("""SELECT id FROM registration WHERE username = %s;""", (name,))
+    cursor.execute("""SELECT id FROM users WHERE username = %s;""", (name,))
     user_id = cursor.fetchall()[0][0]
     cursor.execute("""INSERT INTO question (submission_time, title, message, user_id)
      VALUES (%s,%s,%s,%s);""", (dt, title, message, user_id))
@@ -53,7 +53,7 @@ def insert_into_answer(conn, question_id):
     dt = datetime.now()
     message = request.form["new_answer"]
     name = request.form["username"]
-    cursor.execute("""SELECT id FROM registration WHERE username = %s;""", (name,))
+    cursor.execute("""SELECT id FROM users WHERE username = %s;""", (name,))
     user_id = cursor.fetchall()[0][0]
     cursor.execute("""INSERT INTO answer (submission_time, question_id, message, user_id)
      VALUES (%s,%s,%s,%s);""", (dt, question_id, message, user_id))
@@ -78,7 +78,7 @@ def add_q_comment(conn, question_id):
     dt = datetime.now()
     message = request.form["new_comment"]
     name = request.form["username"]
-    cursor.execute("""SELECT id FROM registration WHERE username = %s;""", (name,))
+    cursor.execute("""SELECT id FROM users WHERE username = %s;""", (name,))
     user_id = cursor.fetchall()[0][0]
     cursor.execute("""INSERT INTO comment (question_id, message, submission_time, user_id) VALUES(%s,%s,%s,%s);""",
                    (question_id, message, dt, user_id))
@@ -89,7 +89,7 @@ def add_a_comment(conn, answer_id):
     dt = datetime.now()
     message = request.form["new_comment"]
     name = request.form["username"]
-    cursor.execute("""SELECT id FROM registration WHERE username = %s;""", (name,))
+    cursor.execute("""SELECT id FROM users WHERE username = %s;""", (name,))
     user_id = cursor.fetchall()[0][0]
     cursor.execute("""INSERT INTO comment (answer_id, message, submission_time, user_id) VALUES(%s,%s,%s,%s);""",
                    (answer_id, message, dt, user_id))
@@ -114,7 +114,7 @@ def show_db_item(conn, query, question_id):
 
 def create_registration_table(conn):
     cursor = conn.cursor()
-    cursor.execute("""CREATE TABLE IF NOT EXISTS registration (
+    cursor.execute("""CREATE TABLE IF NOT EXISTS users (
   ID serial,
   UserName varchar(255) NOT NULL,
   registration_date TIMESTAMP,
@@ -126,7 +126,7 @@ def add_a_user(conn):
     cursor = conn.cursor()
     dt = datetime.now()
     username = request.form["username"]
-    cursor.execute("""INSERT INTO registration (username, registration_date) VALUES(%s,%s);""",
+    cursor.execute("""INSERT INTO users (username, registration_date) VALUES(%s,%s);""",
                    (username, dt))
 
 
@@ -154,27 +154,27 @@ def give_answer_comment_list(answer_id):
 def question_vote_like(conn, question_id, user_id):
     cursor = conn.cursor()
     cursor.execute("""UPDATE question SET vote_number=vote_number+1 WHERE id=%s;""", (question_id,))
-    cursor.execute("""UPDATE registration SET user_reputation=user_reputation+5 WHERE id=%s;""", (user_id,))
+    cursor.execute("""UPDATE users SET user_reputation=user_reputation+5 WHERE id=%s;""", (user_id,))
 
 
 def question_vote_dislike(conn, question_id, user_id):
     cursor = conn.cursor()
     cursor.execute("""UPDATE question SET vote_number=vote_number-1 WHERE id=%s;""", (question_id,))
-    cursor.execute("""UPDATE registration SET user_reputation=user_reputation-2 WHERE id=%s;""", (user_id,))
+    cursor.execute("""UPDATE users SET user_reputation=user_reputation-2 WHERE id=%s;""", (user_id,))
 
 
 def answer_vote_like(conn, question_id, answer_id, user_id):
     cursor = conn.cursor()
     cursor.execute("""UPDATE answer SET vote_number=vote_number+1 WHERE (question_id, id)=(%s,%s);""",
                    (question_id, answer_id))
-    cursor.execute("""UPDATE registration SET user_reputation=user_reputation+10 WHERE id=%s;""", (user_id,))
+    cursor.execute("""UPDATE users SET user_reputation=user_reputation+10 WHERE id=%s;""", (user_id,))
 
 
 def answer_vote_dislike(conn, question_id, answer_id, user_id):
     cursor = conn.cursor()
     cursor.execute("""UPDATE answer SET vote_number=vote_number-1 WHERE (question_id, id)=(%s,%s);""",
                    (question_id, answer_id))
-    cursor.execute("""UPDATE registration SET user_reputation=user_reputation-2 WHERE id=%s;""", (user_id,))
+    cursor.execute("""UPDATE users SET user_reputation=user_reputation-2 WHERE id=%s;""", (user_id,))
 
 
 def give_answer_datas_from_answer_table(question_id):
@@ -199,7 +199,7 @@ def give_answer_comment_list(answer_id):
 
 def list_users(conn):
     cursor = conn.cursor()
-    cursor.execute("""SELECT username, registration_date, id FROM registration;""")
+    cursor.execute("""SELECT username, registration_date, id FROM users;""")
     rows_users = cursor.fetchall()
     return rows_users
 
@@ -207,7 +207,7 @@ def list_users(conn):
 def accepted_answer(conn, answer_id, question_id, user_id):
     cursor = conn.cursor()
     cursor.execute("""UPDATE answer SET accept=True WHERE id=%s;""", (answer_id,))
-    cursor.execute("""UPDATE registration SET user_reputation=user_reputation+15 WHERE id=%s;""", (user_id,))
+    cursor.execute("""UPDATE users SET user_reputation=user_reputation+15 WHERE id=%s;""", (user_id,))
 
 
 def delete_question_comment(conn, comment_id):

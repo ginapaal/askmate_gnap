@@ -14,8 +14,11 @@ def display_list():
 @app.route("/new_question", methods=['GET', 'POST'])
 def new_question():
     if request.method == 'POST':
-        query_manager.insert_into_question(query_manager.connect_to_db())
-        return redirect("/")
+        try:
+            query_manager.insert_into_question(query_manager.connect_to_db())
+            return redirect("/")
+        except IndexError:
+            return render_template("need_registrate.html")
     else:
         return render_template("ask_a_question.html")
 
@@ -34,9 +37,11 @@ def new_answer(question_id):
     question = query_manager.give_question_title(question_id)
     question_body = query_manager.give_question_body(question_id)
     if request.method == "POST":
-
-        query_manager.insert_into_answer(query_manager.connect_to_db(), question_id)
-        return redirect("/question/" + question_id + "")
+        try:
+            query_manager.insert_into_answer(query_manager.connect_to_db(), question_id)
+            return redirect("/question/" + question_id + "")
+        except IndexError:
+            return render_template("need_registrate.html")
     else:
         return render_template('write_new_answer.html', question_id=question_id, question=question,
                                question_body=question_body)
@@ -57,8 +62,11 @@ def add_new_q_comment(question_id):
     question_body = query_manager.give_question_body(question_id)
 
     if request.method == "POST":
-        query_manager.add_q_comment(query_manager.connect_to_db(), question_id)
-        return redirect("/question/" + question_id + "/comments")
+        try:
+            query_manager.add_q_comment(query_manager.connect_to_db(), question_id)
+            return redirect("/question/" + question_id + "/comments")
+        except IndexError:
+            return render_template("need_registrate.html")
     else:
         return render_template("give_question_comment.html", question_id=question_id, question=question, question_body=question_body)
 
