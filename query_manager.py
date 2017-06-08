@@ -201,14 +201,7 @@ def list_users(conn):
 
 def display_userpage(conn, user_id):
     cursor = conn.cursor()
-    cursor.execute("""SELECT users.username, question.message, answer.message, comment.message
-                        FROM users
-                            LEFT JOIN question
-                                ON users.id = question.user_id
-                            LEFT JOIN answer
-                                ON users.id = answer.user_id
-                            LEFT JOIN comment
-                                ON users.id = comment.user_id
-                            WHERE users.id=%s ;""", (user_id,))
-    rows_users = cursor.fetchall()
-    return rows_users
+    cursor.execute("""SELECT username, user_reputation
+                        FROM users WHERE users.id=%s ;""", (user_id,))
+    username_userreput = cursor.fetchall()
+    return username_userreput

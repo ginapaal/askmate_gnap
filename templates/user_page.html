@@ -9,30 +9,58 @@
 
 <body>
 
-    <h3>{{ item [0] }}</h3>
+    <h3>{{ table [0][0] }} Reputation : {{ table [0][1] }} </h3>
 
     <div class="table-fill">
         <table>
             <thead class="table-head" id="table-head">
                 <tr>
                     <th>Asked questions</th>
-                    <th>Given Answers</th>
-                    <th>Given Comments</th>
                 </tr>
             </thead>
             <tbody class="table-hover">
                 {% for item in table %}
                 <tr>
                     <td> {{ item [1] }} </td>
-                    <td> {{ item [2] }} </td>
-                    <td> {{ item [3] }} </td>
                 </tr>
                 {% endfor %}
             </tbody>
         </table>
-        <p>
-            <a href="/"><input type="submit" value="Home"></a>
-        </p>
+
+        <div class="table-fill">
+            <table>
+                <thead class="table-head" id="table-head">
+                    <tr>
+                        <th>Given Answers</th>
+                    </tr>
+                </thead>
+                <tbody class="table-hover">
+                    {% for item in table %}
+                    <tr>
+                        <td> {{ item [2] }} </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+            <div class="table-fill">
+                <table>
+                    <thead class="table-head" id="table-head">
+                        <tr>
+                            <th>Given Answers</th>
+                        </tr>
+                    </thead>
+                    <tbody class="table-hover">
+                        {% for item in table %}
+                        <tr>
+                            <td> {{ item [3] }} </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                <p>
+                    <a href="/"><input type="submit" value="Home"></a>
+                </p>
 </body>
 
 </html>
