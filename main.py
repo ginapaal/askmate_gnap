@@ -122,9 +122,9 @@ def users():
     return render_template("user_list.html", table=rows_users)
 
 
-@app.route('/question/<question_id>/<answer_id>')
-def accept_answer(question_id, answer_id):
-    query_manager.accepted_answer(query_manager.connect_to_db(), answer_id, question_id)
+@app.route('/question/<question_id>/<answer_id>/<user_id>')
+def accept_answer(question_id, answer_id, user_id):
+    query_manager.accepted_answer(query_manager.connect_to_db(), answer_id, question_id, user_id)
     return redirect("/question/" + question_id)
 
 

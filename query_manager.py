@@ -204,6 +204,7 @@ def list_users(conn):
     return rows_users
 
 
-def accepted_answer(conn, answer_id, question_id):
+def accepted_answer(conn, answer_id, question_id, user_id):
     cursor = conn.cursor()
     cursor.execute("""UPDATE answer SET accept=True WHERE id=%s;""", (answer_id,))
+    cursor.execute("""UPDATE registration SET user_reputation=user_reputation+15 WHERE id=%s;""", (user_id,))
