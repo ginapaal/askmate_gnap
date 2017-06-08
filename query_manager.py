@@ -196,3 +196,11 @@ def list_users(conn):
     cursor.execute("""SELECT username, registration_date, id FROM registration;""")
     rows_users = cursor.fetchall()
     return rows_users
+
+
+def delete_answer_row(conn, answer_id):
+    cursor = conn.cursor()
+    cursor.execute("""SELECT question_id from answer WHERE id=%s;""", (answer_id,))
+    question_id = cursor.fetchone()[0]
+    cursor.execute("""DELETE FROM answer WHERE id=%s;""", (answer_id,))
+    return question_id
