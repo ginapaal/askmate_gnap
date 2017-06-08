@@ -225,3 +225,9 @@ def delete_answer_row(conn, answer_id):
         cursor.execute("""DELETE FROM comment WHERE answer_id=%s;""", (answer_id,))
         cursor.execute("""DELETE FROM answer WHERE id=%s;""", (answer_id,))
     return question_id
+
+
+def delete_answer_comment(conn, comment_id):
+    cursor = conn.cursor()
+    print(comment_id)
+    cursor.execute("""DELETE FROM comment WHERE id=%s;""", (comment_id,))
