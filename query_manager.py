@@ -31,7 +31,7 @@ def insert_into_question(conn):
 
 def read_from_db(conn):
     cursor = conn.cursor()
-    cursor.execute("""SELECT * FROM question ORDER BY id;""", conn)
+    cursor.execute("""SELECT * FROM question ORDER BY submission_time;""", conn)
     rows = cursor.fetchall()
     return rows
 
@@ -131,7 +131,8 @@ def add_a_user(conn):
 
 
 def give_answer_datas_from_answer_table(question_id):
-    rows_answer = reader_by_id(connect_to_db(), """SELECT * FROM answer WHERE question_id=%s;""", question_id)
+    rows_answer = reader_by_id(
+        connect_to_db(), """SELECT * FROM answer WHERE question_id=%s ORDER BY id;""", question_id)
     return rows_answer
 
 
