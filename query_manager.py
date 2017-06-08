@@ -7,7 +7,8 @@ import sys
 
 def connect_to_db():
     try:
-        conn = psycopg2.connect("dbname='{}' user='{}' host='localhost' password='{}'".format(config.db_name, config.user, config.password))
+        conn = psycopg2.connect("dbname='{}' user='{}' host='localhost' password='{}'".format(
+            config.db_name, config.user, config.password))
         conn.autocommit = True
     except psycopg2.Error:
         print("""Connection with database failed. You made a typo in your database name, username or password.
@@ -192,6 +193,22 @@ def give_answer_comment_list(answer_id):
 
 def list_users(conn):
     cursor = conn.cursor()
-    cursor.execute("""SELECT username, registration_date, id FROM registration;""")
+    cursor.execute("""SELECT username, registration_date, id
+                        FROM registration;""")
+    rows_users = cursor.fetchall()
+    return rows_users
+
+
+def display_userpage(conn):
+    cursor = conn.cursor()
+    cursor.execute("""SELECT registration.username, question.message, answer.message, comment.message, id
+                        FROM registration 
+                            LEFT JOIN question 
+                                ON registration.id = question.user_id
+                            LEFT JOIN answer
+                                ON registration.id = answer.user_id
+                            LEFT JOIN comment
+                                ON registration.id = comment.user_id
+                            WHERE registration.id = %s ;""", user_id)
     rows_users = cursor.fetchall()
     return rows_users

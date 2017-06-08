@@ -122,5 +122,22 @@ def users():
     return render_template("user_list.html", table=rows_users)
 
 
+@app.route('/user/<user_id>', methods=['GET', 'POST'])
+def user_page(id):
+    # rows_users = query_manager.list_users(query_manager.connect_to_db())
+    # user_name =
+    # user_stuff =
+    return render_template("user_page.html", id=id)
+
+
+"""@app.route('/question/<question_id>', methods=['GET', 'POST'])
+def display_answer_list(question_id):
+    rows_answer = query_manager.give_answer_datas_from_answer_table(question_id)
+    question = query_manager.give_question_title(question_id)
+    question_body = query_manager.give_question_body(question_id)
+    return render_template('answers.html', answer=rows_answer, question_id=question_id, question=question,
+                           question_body=question_body)"""
+
+
 if __name__ == "__main__":
     app.run(debug=True)

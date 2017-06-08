@@ -18,8 +18,8 @@
             <tbody class="table-hover">
                 {% for item in table %}
                 <tr>
-                    <td> <a href="/user/<user_id>">{{ item [0] }}</a> </td>
-                    <td> <a href="/user/<user_id>">{{ item [1] }}</a> </td>
+                    <td> <a href="/user/{{ item[2] }}">{{ item [0] }}</a> </td>
+                    <td> <a href="/user/{{ item[2] }}">{{ item [1] }}</a> </td>
                 </tr>
                 {% endfor %}
             </tbody>
