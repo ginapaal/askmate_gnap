@@ -202,8 +202,3 @@ def list_users(conn):
     rows_users = cursor.fetchall()
     return rows_users
 
-def accepted_answer(conn):
-    cursor = conn.cursor()
-    accept = cursor.execute("""SELECT accept FROM answer""")
-    accept = cursor.fetchall()
-    return accept
