@@ -10,7 +10,7 @@
 <body>
     <div class="table-title">
         <h3> AskMate by G-nap </h3>
-        
+
     </div>
     <form action="/new_question" method='GET'>
         <p><input id='styled_button' type="submit" value="Ask a question"></p>
@@ -37,6 +37,7 @@
                     <th>Like</th>
                     <th>Dislike</th>
                     <th> Total vote number </th>
+                    <th> Delete </th>
                     <th></th>
                 </tr>
             </thead>
@@ -61,11 +62,16 @@
                     </td>
 
                     <td> {{ item[3] }}</td>
-
+                    <td>
+                        <form action="/list/{{ item[0] }}" method="POST">
+                            <input type="submit" value="Delete">
+                        </form>
+                    </td>
                     <td>
                         <form action="/question/{{ item[0] }}" method="POST">
                             <input type="submit" value="Answers">
                         </form>
+                    </td>
                 </tr>
                 {% endfor %}
             </tbody>

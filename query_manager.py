@@ -36,6 +36,11 @@ def read_from_db(conn):
     return rows
 
 
+def delete_question(conn, question_id):
+    cursor = conn.cursor()
+    cursor.execute("""DELETE * FROM question WHERE id=%s;""", (question_id))
+
+
 def reader_by_id(conn, query, question_id):
     cursor = conn.cursor()
     cursor.execute(query, (question_id,))
@@ -196,3 +201,9 @@ def list_users(conn):
     cursor.execute("""SELECT username, registration_date, id FROM registration;""")
     rows_users = cursor.fetchall()
     return rows_users
+
+def accepted_answer(conn, answer_id):
+    cursor = conn.cursor()
+    accept = cursor.execute("""SELECT accept FROM answer WHERE id=%s""", (answer_id,))
+    accept = cursor.fetchone()[0]
+    return accept

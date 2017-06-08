@@ -5,7 +5,7 @@ app = Flask(__name__)
 
 
 @app.route('/', methods=["GET", "POST"])
-@app.route('/list', methods=["GET", "POST"])
+@app.route('/list/<question_id>', methods=["GET", "POST"])
 def display_list():
     rows = query_manager.read_from_db(query_manager.connect_to_db())
     return render_template("list.html", table=rows)
@@ -25,8 +25,9 @@ def display_answer_list(question_id):
     rows_answer = query_manager.give_answer_datas_from_answer_table(question_id)
     question = query_manager.give_question_title(question_id)
     question_body = query_manager.give_question_body(question_id)
+    accept = query_manager.accepted_answer(query_manager.connect_to_db(), answer_id)
     return render_template('answers.html', answer=rows_answer, question_id=question_id, question=question,
-                           question_body=question_body)
+                           question_body=question_body, accept)
 
 
 @app.route("/question/<question_id>/new-answer", methods=["GET", "POST"])
@@ -120,6 +121,12 @@ def answer_votedown(question_id, answer_id, user_id):
 def users():
     rows_users = query_manager.list_users(query_manager.connect_to_db())
     return render_template("user_list.html", table=rows_users)
+
+
+@app.route('/question/<question_id>/<answer_id>')
+def accept_answer(answer_id):
+
+    pass
 
 
 if __name__ == "__main__":
