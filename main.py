@@ -122,5 +122,11 @@ def users():
     return render_template("user_list.html", table=rows_users)
 
 
+@app.route('/answer/<answer_id>/delete')
+def delete_answer(answer_id):
+    question_id = query_manager.delete_answer_row(query_manager.connect_to_db(), answer_id)
+    return redirect(url_for("display_answer_list", question_id=question_id))
+
+
 if __name__ == "__main__":
     app.run(debug=True)
