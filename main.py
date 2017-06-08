@@ -130,7 +130,17 @@ def answer_votedown(question_id, answer_id, user_id):
 @app.route('/users-list', methods=['GET', 'POST'])
 def users():
     rows_users = query_manager.list_users(query_manager.connect_to_db())
-    return render_template("user_list.html", table=rows_users)
+    return render_template("users_list.html", table=rows_users)
+
+
+@app.route('/user/<user_id>', methods=['GET', 'POST'])
+def user_page(user_id):
+    rows_username = query_manager.display_userpage_username_reputation(query_manager.connect_to_db(), user_id)
+    rows_user_question = query_manager.display_userpage_questions(query_manager.connect_to_db(), user_id)
+    rows_user_answer = query_manager.display_userpage_answer(query_manager.connect_to_db(), user_id)
+    rows_user_comment = query_manager.display_userpage_comment(query_manager.connect_to_db(), user_id)
+    return render_template("user_page.html", table_username=rows_username, table_user_question=rows_user_question,
+                           table_user_answer=rows_user_answer, table_user_comment=rows_user_comment)
 
 
 @app.route('/question/<question_id>/<answer_id>/<user_id>')

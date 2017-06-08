@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title> User Page </title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='list.css') }}">
+</head>
+
+<body>
+
+    <h3>{{ table_username [0][0] }} Reputation : {{ table_username [0][1] }} </h3>
+
+    <div class="table-fill">
+        <table>
+            <thead class="table-head" id="table-head">
+                <tr>
+                    <th>Asked questions</th>
+                </tr>
+            </thead>
+            <tbody class="table-hover">
+                {% for item in table_user_question %}
+                <tr>
+                    <td> {{ item [0] }} </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <div class="table-fill">
+            <table>
+                <thead class="table-head" id="table-head">
+                    <tr>
+                        <th>Given Answers</th>
+                    </tr>
+                </thead>
+                <tbody class="table-hover">
+                    {% for item in table_user_answer %}
+                    <tr>
+                        <td> {{ item [0] }} </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+            <div class="table-fill">
+                <table>
+                    <thead class="table-head" id="table-head">
+                        <tr>
+                            <th>Given Comments</th>
+                        </tr>
+                    </thead>
+                    <tbody class="table-hover">
+                        {% for item in table_user_comment %}
+                        <tr>
+                            <td> {{ item [0] }} </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                <p>
+                    <a href="/"><input type="submit" value="Home"></a>
+                </p>
+</body>
+
+</html>
