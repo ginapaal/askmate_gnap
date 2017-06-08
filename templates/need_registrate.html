@@ -4,6 +4,7 @@
 
 <head>
     <title> Not registrated user </title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='need_registrate.css') }}" />
 </head>
 
 <body>
@@ -11,7 +12,7 @@
     <h2> Registrate here </h2>
 
     <form action="/registration">
-        <input type="submit" value="Registration">
+        <input type="submit" value="Registration" id="styled_button">
     </form>
 
 </body>
