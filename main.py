@@ -123,8 +123,9 @@ def users():
 
 
 @app.route('/question/<question_id>/<answer_id>')
-def accept_answer(answer_id):
-    pass
+def accept_answer(question_id, answer_id):
+    query_manager.accepted_answer(query_manager.connect_to_db(), answer_id, question_id)
+    return redirect("/question/" + question_id)
 
 
 if __name__ == "__main__":

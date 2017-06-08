@@ -202,3 +202,7 @@ def list_users(conn):
     rows_users = cursor.fetchall()
     return rows_users
 
+
+def accepted_answer(conn, answer_id, question_id):
+    cursor = conn.cursor()
+    cursor.execute("""UPDATE answer SET accept=True WHERE id=%s;""", (answer_id,))
