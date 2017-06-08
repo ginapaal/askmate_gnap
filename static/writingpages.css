@@ -272,3 +272,31 @@ body {
    background: lightgreen;
    transition: background-color 0.2s ease 0.2s
    }
+#styled_reg_button{
+    border-top: 1px solid #8a8a8a;
+    background: -webkit-linear-gradient(top, salmon, salmon);
+    padding: 1px 5px;
+    border-radius: 40px;
+    box-shadow: rgba(0,0,0,1) 0 1px 0;
+    text-shadow: rgba(0,0,0,.4) 0 1px 0;
+    transition: background-color 0.3s ease 0.1s;
+    color: #ffffff;
+    font-size: 16px;
+    font-family: Sans-Serif;
+    text-decoration: none;
+    vertical-align: middle;
+    position: relative;
+    margin: 120px 0px 0px -62px;
+    left: 50%;
+    right: 50%;
+}
+#styled_reg_button:hover{
+   border-top-color: lightseagreen;
+   background: lightgreen;
+   color: darkslategrey;
+   }
+#styled_reg_button:active{
+   border-top-color: lightseagreen;
+   background: lightgreen;
+   transition: background-color 0.2s ease 0.2s
+   }

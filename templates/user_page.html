@@ -4,13 +4,13 @@
 
 <head>
     <title> User Page </title>
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='list.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='writingpages.css') }}">
 </head>
 
 <body>
-
-    <h3>{{ table_username [0][0] }} Reputation : {{ table_username [0][1] }} </h3>
-
+    <div class="answers-title">
+        <h3>{{ table_username [0][0] }} Reputation : {{ table_username [0][1] }} </h3>
+    </div>
     <div class="table-fill">
         <table>
             <thead class="table-head" id="table-head">
@@ -59,7 +59,7 @@
                     </tbody>
                 </table>
                 <p>
-                    <a href="/"><input type="submit" value="Home"></a>
+                    <a href="/"><input id='styled_button' type="submit" value="Home"></a>
                 </p>
 </body>
 

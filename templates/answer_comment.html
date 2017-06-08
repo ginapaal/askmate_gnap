@@ -20,16 +20,17 @@
             <thead class="answer-head" id="answer-head">
                 <tr>
                     <th>Comments</th>
+                    <th>Delete</th>
                 </tr>
             </thead>
             <tbody class="answer-body">
                 {% for item in comment %}
                 <tr>
                     <td> {{ item[3] }} </td>
-                    <td> 
-                    <a href="/answer/{{ answer_id }}/comments/{{ item[0] }}/delete">
-                        <img src="https://cdn4.iconfinder.com/data/icons/linecon/512/delete-512.png" width="30" height="30">
-                    </a>
+                    <td>
+                        <a href="/answer/{{ answer_id }}/comments/{{ item[0] }}/delete">
+                            <img src="https://cdn4.iconfinder.com/data/icons/linecon/512/delete-512.png" width="30" height="30">
+                        </a>
                     </td>
                 </tr>
                 {% endfor %}
@@ -41,7 +42,7 @@
         <input id="styled_button" type="submit" value="Add a comment">
     </form>
     <p>
-        <a href="/"><input type="submit" value="Home"></a>
+        <a href="/"><input id="styled_button" type="submit" value="Home"></a>
     </p>
 </body>
 
