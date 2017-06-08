@@ -32,7 +32,8 @@ width: 100%;
    vertical-align: middle;
    position: relative;
    margin: 0 0 0 -50px;
-   left: 33%;
+   left: 50%;
+   right: 50%;
    }
   #styled_r_button{
    border-top: 1px solid #8a8a8a;
@@ -79,7 +80,8 @@ width: 100%;
    vertical-align: middle;
    position: relative;
    margin: 0 0 0 -50px;
-   left: 73%;
+   left: 50%;
+   right: 50%;
    }
 #styled_q_button:hover{
    border-top-color: lightseagreen;
@@ -91,7 +93,7 @@ width: 100%;
    background: lightgreen;
    transition: background-color 0.2s ease 0.2s
    }
-  #styled_r_button:hover{
+#styled_r_button:hover{
    border-top-color: lightseagreen;
    background: salmon;
    color: white;
