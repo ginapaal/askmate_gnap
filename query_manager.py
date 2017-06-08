@@ -199,9 +199,33 @@ def list_users(conn):
     return rows_users
 
 
-def display_userpage(conn, user_id):
+def display_userpage_username_reputation(conn, user_id):
     cursor = conn.cursor()
     cursor.execute("""SELECT username, user_reputation
-                        FROM users WHERE users.id=%s ;""", (user_id,))
+                        FROM users WHERE id=%s ;""", (user_id,))
     username_userreput = cursor.fetchall()
     return username_userreput
+
+
+def display_userpage_questions(conn, user_id):
+    cursor = conn.cursor()
+    cursor.execute("""SELECT message
+                        FROM question WHERE user_id=%s ;""", (user_id,))
+    username_question = cursor.fetchall()
+    return username_question
+
+
+def display_userpage_answer(conn, user_id):
+    cursor = conn.cursor()
+    cursor.execute("""SELECT message
+                        FROM answer WHERE user_id=%s ;""", (user_id,))
+    username_answer = cursor.fetchall()
+    return username_answer
+
+
+def display_userpage_comment(conn, user_id):
+    cursor = conn.cursor()
+    cursor.execute("""SELECT message
+                        FROM comment WHERE user_id=%s ;""", (user_id,))
+    username_answer = cursor.fetchall()
+    return username_answer
