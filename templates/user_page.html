@@ -8,11 +8,13 @@
 </head>
 
 <body>
+
+    <h3>{{ item [0] }}</h3>
+
     <div class="table-fill">
         <table>
             <thead class="table-head" id="table-head">
                 <tr>
-                    <th>User name</th>
                     <th>Asked questions</th>
                     <th>Given Answers</th>
                     <th>Given Comments</th>
@@ -21,7 +23,6 @@
             <tbody class="table-hover">
                 {% for item in table %}
                 <tr>
-                    <td> {{ item [0] }} </td>
                     <td> {{ item [1] }} </td>
                     <td> {{ item [2] }} </td>
                     <td> {{ item [3] }} </td>
