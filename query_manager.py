@@ -31,9 +31,14 @@ def insert_into_question(conn):
 
 def read_from_db(conn):
     cursor = conn.cursor()
-    cursor.execute("""SELECT * FROM question ORDER BY id;""", conn)
+    cursor.execute("""SELECT * FROM question ORDER BY submission_time;""", conn)
     rows = cursor.fetchall()
     return rows
+
+
+def delete_question(conn, question_id):
+    cursor = conn.cursor()
+    cursor.execute("""DELETE * FROM question WHERE id=%s;""", (question_id))
 
 
 def reader_by_id(conn, query, question_id):
@@ -126,7 +131,8 @@ def add_a_user(conn):
 
 
 def give_answer_datas_from_answer_table(question_id):
-    rows_answer = reader_by_id(connect_to_db(), """SELECT * FROM answer WHERE question_id=%s;""", question_id)
+    rows_answer = reader_by_id(
+        connect_to_db(), """SELECT * FROM answer WHERE question_id=%s ORDER BY id;""", question_id)
     return rows_answer
 
 
@@ -196,6 +202,17 @@ def list_users(conn):
     cursor.execute("""SELECT username, registration_date, id FROM registration;""")
     rows_users = cursor.fetchall()
     return rows_users
+
+
+def accepted_answer(conn, answer_id, question_id, user_id):
+    cursor = conn.cursor()
+    cursor.execute("""UPDATE answer SET accept=True WHERE id=%s;""", (answer_id,))
+    cursor.execute("""UPDATE registration SET user_reputation=user_reputation+15 WHERE id=%s;""", (user_id,))
+
+
+def delete_question_comment(conn, comment_id):
+    cursor = conn.cursor()
+    cursor.execute("""DELETE FROM comment WHERE id=%s;""", (comment_id,))
 
 
 def delete_answer_row(conn, answer_id):
