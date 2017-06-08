@@ -63,9 +63,9 @@
 
                     <td> {{ item[3] }}</td>
                     <td>
-                        <form action="/list/{{ item[0] }}" method="POST">
-                            <input type="submit" value="Delete">
-                        </form>
+                        <a href="/question/{{ item[0] }}/delete">
+                            <img src="https://cdn4.iconfinder.com/data/icons/linecon/512/delete-512.png" width="30" height="30">
+                        </a>
                     </td>
                     <td>
                         <form action="/question/{{ item[0] }}" method="POST">
