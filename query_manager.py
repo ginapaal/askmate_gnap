@@ -36,11 +36,6 @@ def read_from_db(conn):
     return rows
 
 
-def delete_question(conn, question_id):
-    cursor = conn.cursor()
-    cursor.execute("""DELETE * FROM question WHERE id=%s;""", (question_id))
-
-
 def reader_by_id(conn, query, question_id):
     cursor = conn.cursor()
     cursor.execute(query, (question_id,))
@@ -222,6 +217,7 @@ def delete_question(conn, question_id):
     except psycopg2.Error:
         cursor.execute("""DELETE FROM comment WHERE question_id=%s;""", (question_id,))
         cursor.execute("""DELETE FROM answer WHERE question_id=%s;""", (question_id,))
+        cursor.execute("""DELETE FROM question_tag WHERE question_id=%s;""", (question_id,))
         cursor.execute("""DELETE FROM question WHERE id=%s;""", (question_id,))
 
 
