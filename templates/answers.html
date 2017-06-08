@@ -26,7 +26,8 @@
                     <th> Like </th>
                     <th> Dislike</th>
                     <th> Total vote number </th>
-                    <th></th>
+                    <th> Accept </th>
+                    <th> Delete </th>
                 </tr>
             </thead>
             <tbody class="table-hover">
@@ -60,7 +61,7 @@
                         <img src="https://cdn4.iconfinder.com/data/icons/flat-icons-for-web-and-seo/341/18-128.png" width="20" height="30">
                     </td>
                     {% endif %}
-                    <td> 
+                    <td>
                         <a href="/answer/{{ item[0] }}/delete">
                             <img src="https://cdn4.iconfinder.com/data/icons/linecon/512/delete-512.png" width="30" height="30">
                         </a>
@@ -76,7 +77,7 @@
         <input id="styled_button" type="submit" value="I can answer mate">
     </form>
     <p>
-        <a href="/"><input type="submit" value="Home"></a>
+        <a href="/"><input id='styled_button' type="submit" value="Home"></a>
     </p>
 </body>
 
