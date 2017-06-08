@@ -25,9 +25,9 @@ def display_answer_list(question_id):
     rows_answer = query_manager.give_answer_datas_from_answer_table(question_id)
     question = query_manager.give_question_title(question_id)
     question_body = query_manager.give_question_body(question_id)
-    accept = query_manager.accepted_answer(query_manager.connect_to_db(), answer_id)
+    accept = query_manager.accepted_answer(query_manager.connect_to_db())
     return render_template('answers.html', answer=rows_answer, question_id=question_id, question=question,
-                           question_body=question_body, accept)
+                           question_body=question_body, accept=accept)
 
 
 @app.route("/question/<question_id>/new-answer", methods=["GET", "POST"])
@@ -125,7 +125,6 @@ def users():
 
 @app.route('/question/<question_id>/<answer_id>')
 def accept_answer(answer_id):
-
     pass
 
 

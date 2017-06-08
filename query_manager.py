@@ -202,8 +202,8 @@ def list_users(conn):
     rows_users = cursor.fetchall()
     return rows_users
 
-def accepted_answer(conn, answer_id):
+def accepted_answer(conn):
     cursor = conn.cursor()
-    accept = cursor.execute("""SELECT accept FROM answer WHERE id=%s""", (answer_id,))
-    accept = cursor.fetchone()[0]
+    accept = cursor.execute("""SELECT accept FROM answer""")
+    accept = cursor.fetchall()
     return accept
