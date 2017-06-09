@@ -174,4 +174,4 @@ def delete_answer_comment(comment_id, answer_id):
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run()
